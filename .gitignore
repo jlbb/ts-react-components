@@ -2,4 +2,9 @@
 # Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
 # Useful .gitignore templates: https://github.com/github/gitignore
 
+.editorconfig
 .idea
+node_modules
+package-lock.json
+yarn-error.log
+yarn.lock

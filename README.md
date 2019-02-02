@@ -1,1 +1,1 @@
-html5-boilerplate
+TypeScript Boilerplate
