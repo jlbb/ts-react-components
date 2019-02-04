@@ -2,7 +2,7 @@ import React from 'react';
 
 class Header extends React.PureComponent {
   render() {
-    return <h1 className={'header'}>Hello world! This is TypeScript boilerplate</h1>
+    return <h1 className={'header'}>Hello World! This is TypeScript boilerplate (Header component)</h1>
   }
 }
 

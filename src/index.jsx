@@ -9,3 +9,5 @@ ReactDOM.render(
   <RootApp />,
   document.getElementById('app')
 );
+
+module.hot.accept();
