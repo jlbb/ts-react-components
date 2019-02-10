@@ -1,4 +1,4 @@
-#TypeScript Boilerplate
+#TypeScript 101Learning
 To start your development server and run the page in the browser:
 * Open your terminal
  * Run `npm run dev`: This command will run our development server under the port specified in the webpack.config (by default 8900), and it will open the default browser serving the page under the path localhost:8900.

@@ -3,6 +3,7 @@
 # Useful .gitignore templates: https://github.com/github/gitignore
 
 .editorconfig
+.eslintcache
 .idea
 dist
 node_modules

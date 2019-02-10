@@ -1,12 +1,16 @@
 {
     "extends": "airbnb",
+    "parser": "babel-eslint",
+    "env": {
+      "browser": true,
+      "node": true
+    },
     "rules": {
       "indent": [
         2,
         // Override 4 spaces instead of 2
         4,
         {
-          "SwitchCase": 1,
           "ignoredNodes": [
             "JSXElement *",
             "JSXElement"
@@ -23,5 +27,5 @@
         2,
         4
       ]
-    }
+    },
 }
