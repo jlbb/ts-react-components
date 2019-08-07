@@ -1,0 +1,31 @@
+{
+    "extends": "airbnb",
+    "parser": "babel-eslint",
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "rules": {
+      "indent": [
+        2,
+        // Override 4 spaces instead of 2
+        4,
+        {
+          "ignoredNodes": [
+            "JSXElement *",
+            "JSXElement"
+          ]
+        }
+      ],
+      "react/prefer-stateless-function": false,
+      "react/jsx-curly-brace-presence": true,
+      "react/jsx-indent-props": [
+        2,
+        "first"
+      ],
+      "react/jsx-indent": [
+        2,
+        4
+      ]
+    },
+}

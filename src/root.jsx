@@ -1,12 +1,14 @@
 import React from 'react';
-import Header from "./components/Header";
+import Header from './components/Header';
 
 class Root extends React.PureComponent {
-  render() {
-    return (
-        <Header />
-      );
-  }
+    render() {
+        return (
+            <div id="root">
+                <Header />
+            </div>
+        );
+    }
 }
 
 export default Root;
