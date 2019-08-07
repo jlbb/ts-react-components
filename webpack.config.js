@@ -18,10 +18,10 @@ module.exports = (env) => {
     console.log('MODE', mode);
     return {
         mode,
-        devtool: 'eval-source-map',
+        devtool: 'source-map',
         entry: [
             'webpack/hot/only-dev-server',
-            path.resolve(__dirname, 'src', 'index.jsx'),
+            path.resolve(__dirname, 'src', 'index.tsx'),
         ],
         output: {
             path: path.resolve(__dirname, 'dist'),
@@ -30,12 +30,12 @@ module.exports = (env) => {
             hotUpdateMainFilename: '__hmr/hot-update.json',
         },
         resolve: {
-            extensions: ['.js', '.jsx'],
+            extensions: ['.ts', '.js', '.tsx', '.jsx'],
         },
         module: {
             rules: [
                 {
-                    test: /\.(js|jsx)$/,
+                    test: /\.(ts|js|tsx|jsx)$/,
                     exclude: /node_modules/,
                     use: [
                         {
@@ -43,6 +43,9 @@ module.exports = (env) => {
                             options: {
                                 cacheDirectory: true,
                             },
+                        },
+                        {
+                            loader: 'ts-loader',
                         },
                         {
                             loader: 'eslint-loader',

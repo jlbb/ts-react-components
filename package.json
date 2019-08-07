@@ -5,17 +5,21 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --env.NODE_ENV=production --config webpack.config.js",
-    "dev": "webpack-dev-server --colors --progess --config webpack.config.js",
+    "dev": "webpack-dev-server --colors --progess --jsx --config webpack.config.js",
     "lint": "npm run lint:js",
-    "lint:js": "eslint --cache --color src --ext .jsx --ext .js",
+    "lint:js": "eslint --cache --color src --ext .ts,.js,.tsx,.jsx",
     "lint:fix": "npm run lint:js:fix",
-    "lint:js:fix": "eslint --cache --color src --ext .jsx --ext .js --fix",
+    "lint:js:fix": "eslint --cache --color src --ext .ts,.js,.tsx,.jsx --fix",
     "serve": "npm run lint:fix & npm run build & nodemon server/index.js"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
+    "@types/webpack-env": "^1.14.0",
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
     "css-loader": "^2.1.0",
@@ -34,13 +38,20 @@
     "react-hot-loader": "^4.6.5",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "ts-loader": "^6.0.4",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
+    "@types/react": "^16.8.24",
+    "@types/react-dom": "^16.8.5",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "prettier": "^1.18.2",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "typescript": "^3.5.3"
   },
   "husky": {
     "hooks": {
