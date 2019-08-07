@@ -4,7 +4,9 @@ import Header from './components/Header';
 class Root extends React.PureComponent {
     render() {
         return (
-            <Header />
+            <div id="root">
+                <Header />
+            </div>
         );
     }
 }

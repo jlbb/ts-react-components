@@ -1,3 +1,14 @@
 @import 'reset';
 @import 'main';
 @import 'normalize';
+
+.title {
+  color: red;
+}
+
+#app {
+  .header {
+    font-size: 20px;
+    color: blueviolet;
+  }
+}
