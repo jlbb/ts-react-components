@@ -10,25 +10,33 @@
     "sourceType": "module"
   },
   "env": {
-      "browser": true,
-      "node": true
-    },
-    "rules": {
-      "indent": [
-        2,
-        // Override 4 spaces instead of 2
-        4,
-        {
-          "ignoredNodes": [
-            "JSXElement *",
-            "JSXElement"
-          ]
-        }
-      ],
-      "@typescript-eslint/indent": ["error", 4, { "ignoredNodes": ["JSXAttribute"]}],
-      "@typescript-eslint/explicit-member-accessibility": 0,
-      "@typescript-eslint/no-explicit-any": 0,
-      "react/prefer-stateless-function": false,
-      "react/jsx-curly-brace-presence": true
-    }
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "indent": [
+      2,
+      // Override 4 spaces instead of 2
+      4,
+      {
+        "ignoredNodes": [
+          "JSXElement *",
+          "JSXElement"
+        ]
+      }
+    ],
+    "@typescript-eslint/indent": [
+      "error",
+      4,
+      {
+        "ignoredNodes": [
+          "JSXAttribute"
+        ]
+      }
+    ],
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/explicit-member-accessibility": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-unused-vars": 0
+  }
 }

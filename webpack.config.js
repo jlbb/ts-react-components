@@ -3,6 +3,9 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+const PROD = 'production';
+const DEV = 'development';
+
 const htmlPlugin = new HtmlWebPackPlugin({
     template: './src/index.html',
     filename: './index.html',
@@ -13,16 +16,13 @@ const cssPlugin = new MiniCssExtractPlugin({
     chunkFilename: 'main-chunk.css',
 });
 
-module.exports = (env) => {
-    const mode = env && env.NODE_ENV === 'production' ? 'production' : 'development';
+module.exports = env => {
+    const mode = env && env.NODE_ENV === PROD ? PROD : DEV;
     console.log('MODE', mode);
     return {
         mode,
-        devtool: 'source-map',
-        entry: [
-            'webpack/hot/only-dev-server',
-            path.resolve(__dirname, 'src', 'index.tsx'),
-        ],
+        devtool: mode !== PROD ? 'inline-source-map' : 'source-map',
+        entry: ['webpack/hot/only-dev-server', path.resolve(__dirname, 'src', 'index.tsx')],
         output: {
             path: path.resolve(__dirname, 'dist'),
             filename: 'app.js',
@@ -54,27 +54,27 @@ module.exports = (env) => {
                 },
                 {
                     test: /\.(sa|sc|c)ss$/,
-                    use: [{
-                        loader: mode !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader,
-                    }, {
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: true,
+                    use: [
+                        {
+                            loader: mode !== PROD ? 'style-loader' : MiniCssExtractPlugin.loader,
                         },
-                    }, {
-                        loader: 'sass-loader',
-                        options: {
-                            sourceMap: true,
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                sourceMap: true,
+                            },
                         },
-                    }],
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sourceMap: true,
+                            },
+                        },
+                    ],
                 },
             ],
         },
-        plugins: [
-            htmlPlugin,
-            cssPlugin,
-            new webpack.HotModuleReplacementPlugin(),
-        ],
+        plugins: [htmlPlugin, cssPlugin, new webpack.HotModuleReplacementPlugin()],
         devServer: {
             contentBase: './dist',
             publicPath: '/',
