@@ -61,12 +61,12 @@
     }
   },
   "lint-staged": {
-    "src/**/*.(j|t})s?(x)": [
-      "npm run lint:js -- --fix",
+    "src/**/*.(j|t)s?(x)": [
+      "npm run lint:js:fix",
       "git add"
     ],
-    "test/**/*.(j|t})s?(x)": [
-      "npm run lint:js -- --fix",
+    "test/**/*.(j|t)s?(x)": [
+      "npm run lint:js:fix",
       "git add"
     ]
   }
