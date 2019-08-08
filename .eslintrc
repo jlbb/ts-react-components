@@ -1,31 +1,44 @@
 {
-    "extends": "airbnb",
-    "parser": "babel-eslint",
+    "parser": "@typescript-eslint/parser",
+    "extends": ["plugin:@typescript-eslint/recommended", "prettier/@typescript-eslint", "plugin:prettier/recommended"],
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
     "env": {
-      "browser": true,
-      "node": true
+        "browser": true,
+        "node": true
     },
     "rules": {
-      "indent": [
-        2,
-        // Override 4 spaces instead of 2
-        4,
-        {
-          "ignoredNodes": [
-            "JSXElement *",
-            "JSXElement"
-          ]
-        }
-      ],
-      "react/prefer-stateless-function": false,
-      "react/jsx-curly-brace-presence": true,
-      "react/jsx-indent-props": [
-        2,
-        "first"
-      ],
-      "react/jsx-indent": [
-        2,
-        4
-      ]
-    },
+        "indent": [
+            2,
+            // Override 4 spaces instead of 2
+            4,
+            {
+                "ignoredNodes": ["JSXElement *", "JSXElement"]
+            }
+        ],
+        "sort-imports": [
+            "warn",
+            {
+                "ignoreCase": false,
+                "ignoreDeclarationSort": false,
+                "ignoreMemberSort": false,
+                "memberSyntaxSortOrder": ["all", "multiple", "single", "none"]
+            }
+        ],
+        "sort-keys": ["warn", "asc"],
+        "@typescript-eslint/indent": [
+            "error",
+            4,
+            {
+                "ignoredNodes": ["JSXAttribute"]
+            }
+        ],
+        "@typescript-eslint/explicit-function-return-type": 0,
+        "@typescript-eslint/explicit-member-accessibility": 0,
+        "@typescript-eslint/no-explicit-any": 0,
+        "@typescript-eslint/no-unused-vars": 0,
+        "@typescript-eslint/no-use-before-define": 0
+    }
 }

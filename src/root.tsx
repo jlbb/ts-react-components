@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Header from './components/Header';
 
 class Root extends React.PureComponent {
