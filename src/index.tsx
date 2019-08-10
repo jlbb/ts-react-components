@@ -7,4 +7,6 @@ import './styles/app.scss';
 
 ReactDOM.render(<RootApp />, document.getElementById('app'));
 
-(module as any).hot.accept();
+if (module.hot) {
+    module.hot.accept();
+}

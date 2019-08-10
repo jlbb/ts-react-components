@@ -15,8 +15,8 @@ app.get('/main.css', (req, res) => {
     res.sendFile(path.join(__dirname, '../', 'dist/main.css'));
 });
 
-app.get('/app.js', (req, res) => {
-    res.sendFile(path.join(__dirname, '../', 'dist/app.js'));
+app.get('/app.min.js', (req, res) => {
+    res.sendFile(path.join(__dirname, '../', 'dist/app.min.js'));
 });
 
 // Allows you to set port in the project properties.
