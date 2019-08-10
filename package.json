@@ -5,10 +5,12 @@
   "license": "MIT",
   "scripts": {
     "build": "rimraf -rf dist & npm run lint:fix & webpack --env.NODE_ENV=production --config webpack.config.js",
+    "build:serve": "npm run build & nodemon server/index.js",
     "serve": "nodemon server/index.js",
-    "serve:rebuild": "npm run build & nodemon server/index.js",
-    "dev": "npm run lint & webpack-dev-server --colors --progess --jsx --config webpack.config.js",
+
+    "dev": "webpack-dev-server --colors --progess --jsx --config webpack.config.js",
     "dev:fix": "npm run lint:fix & webpack-dev-server --colors --progess --jsx --config webpack.config.js",
+
     "lint": "npm run lint:js",
     "lint:js": "eslint --cache --color src --ext .ts,.js,.tsx,.jsx",
     "lint:fix": "npm run lint:js:fix",
@@ -43,7 +45,8 @@
     "ts-loader": "^6.0.4",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.1.14"
+    "webpack-dev-server": "^3.1.14",
+    "webpack-merge": "^4.2.1"
   },
   "dependencies": {
     "@types/react": "^16.8.24",
