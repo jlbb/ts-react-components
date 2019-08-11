@@ -8,15 +8,23 @@ const open = require('open');
 const app = express();
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../', 'dist/index.html'));
+    res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
 
 app.get('/main.css', (req, res) => {
-    res.sendFile(path.join(__dirname, '../', 'dist/main.css'));
+    res.sendFile(path.join(__dirname, '../dist', 'main.css'));
 });
 
 app.get('/app.min.js', (req, res) => {
-    res.sendFile(path.join(__dirname, '../', 'dist/app.min.js'));
+    res.sendFile(path.join(__dirname, '../dist', 'app.min.js'));
+});
+
+app.get(/(fonts|images)/, (req, res) => {
+    res.sendFile(path.join(__dirname, '../dist', req.url));
+});
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public', '404.html'));
 });
 
 // Allows you to set port in the project properties.

@@ -7,10 +7,8 @@
     "build": "rimraf -rf dist & npm run lint:fix & webpack --env.NODE_ENV=production --config webpack.config.js",
     "build:serve": "npm run build & nodemon server/index.js",
     "serve": "nodemon server/index.js",
-
     "dev": "webpack-dev-server --colors --progess --jsx --config webpack.config.js",
     "dev:fix": "npm run lint:fix & webpack-dev-server --colors --progess --jsx --config webpack.config.js",
-
     "lint": "npm run lint:js",
     "lint:js": "eslint --cache --color src --ext .ts,.js,.tsx,.jsx",
     "lint:fix": "npm run lint:js:fix",
@@ -33,6 +31,7 @@
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
+    "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^1.3.1",
     "lint-staged": "^8.1.3",
@@ -43,6 +42,7 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "ts-loader": "^6.0.4",
+    "url-loader": "^2.1.0",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.14",

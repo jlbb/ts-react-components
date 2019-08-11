@@ -9,7 +9,7 @@ const cssPlugin = new MiniCssExtractPlugin({
 module.exports = {
     mode: 'production',
     devtool: 'source-map',
-
+    
     plugins: [cssPlugin],
 
     module: {
