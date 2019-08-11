@@ -5,6 +5,7 @@ class Root extends React.PureComponent {
     render() {
         return (
             <div id="root">
+                <div className={'learning-icon'} />
                 <Header />
             </div>
         );

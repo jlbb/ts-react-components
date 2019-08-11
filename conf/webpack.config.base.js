@@ -4,12 +4,12 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 const htmlPlugin = new HtmlWebPackPlugin({
-    template: './src/index.html',
-    filename: './index.html',
+    template: 'public/index.html',
+    filename: 'index.html',
 });
 
 module.exports = {
-    entry: ['webpack/hot/only-dev-server', path.resolve(__dirname, '../src', 'index.tsx')],
+    entry: [path.resolve(__dirname, '../src', 'index.tsx')],
     output: {
         path: path.resolve(__dirname, '../dist'),
         filename: 'app.min.js',
@@ -49,6 +49,31 @@ module.exports = {
                 options: {
                     emitWarning: true,
                 },
+            },
+            {
+                test: /\.(png|jp(e*)g|svg)$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 8000, // Convert images < 8kb to base64 strings
+                            name: '[name]-[hash].[ext]',
+                            outputPath: 'images',
+                        },
+                    },
+                ],
+            },
+            {
+                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name]-[hash].[ext]',
+                            outputPath: 'fonts',
+                        },
+                    },
+                ],
             },
         ],
     },

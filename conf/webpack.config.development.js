@@ -4,7 +4,9 @@ const webpack = require('webpack');
 module.exports = {
     mode: 'development',
     devtool: 'inline-source-map',
-
+    
+    entry: ['webpack/hot/only-dev-server'],
+    
     devServer: {
         historyApiFallback: true,
         host: 'localhost',
