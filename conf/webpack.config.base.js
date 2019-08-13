@@ -56,7 +56,7 @@ module.exports = {
                     {
                         loader: 'url-loader',
                         options: {
-                            limit: 8000, // Convert images < 8kb to base64 strings
+                            limit: 10000, // Convert images < 10kb to base64 strings
                             name: '[name]-[hash].[ext]',
                             outputPath: 'images',
                         },
@@ -65,6 +65,7 @@ module.exports = {
             },
             {
                 test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                exclude: [/images/],
                 use: [
                     {
                         loader: 'file-loader',
