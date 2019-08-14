@@ -11,12 +11,12 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
 
-app.get('/main.css', (req, res) => {
-    res.sendFile(path.join(__dirname, '../dist', 'main.css'));
+app.get(/main(-.*)?.css/, (req, res) => {
+    res.sendFile(path.join(__dirname, '../dist', req.url));
 });
 
-app.get('/app.min.js', (req, res) => {
-    res.sendFile(path.join(__dirname, '../dist', 'app.min.js'));
+app.get(/(.*\.)?app.min.js/, (req, res) => {
+    res.sendFile(path.join(__dirname, '../dist', req.url));
 });
 
 app.get(/(fonts|images)/, (req, res) => {
