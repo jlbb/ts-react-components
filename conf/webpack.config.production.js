@@ -84,13 +84,15 @@ module.exports = {
                     {
                         loader: 'postcss-loader',
                         options: {
-                            plugins: [require('autoprefixer')]
-                        }
+                            plugins: [require('autoprefixer')],
+                        },
                     },
                     {
                         loader: 'sass-loader',
                         options: {
                             sourceMap: false,
+                            data: '@import "config";',
+                            includePaths: ['src/styles'],
                         },
                     },
                 ],

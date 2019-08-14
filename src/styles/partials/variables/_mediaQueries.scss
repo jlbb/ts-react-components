@@ -1,0 +1,20 @@
+// - For more media queries for common device breakpoints:
+// https://responsivedesign.is/develop/browser-feature-support/media-queries-for-common-device-breakpoints/
+// - Stats for screen resolution:
+// https://gs.statcounter.com/screen-resolution-stats
+
+$SMALL_MOBILE: 'SMALL_MOBILE';
+$MOBILE: 'MOBILE';
+$TABLET: 'TABLET';
+$DESKTOP: 'DESKTOP';
+$X_DESKTOP: 'X_DESKTOP';
+$XX_DESKTOP: 'XX_DESKTOP';
+
+$mediaQueries: (
+    $SMALL_MOBILE: 'max-width: 360px',
+    $MOBILE: '(min-width: 360px) and (max-width: 767px)',
+    $TABLET: '(min-width: 768px) and (max-width: 1023px)',
+    $DESKTOP: '(min-width: 1024px) and (max-width: 1365px)',
+    $X_DESKTOP: '(min-width: 1366px)',
+    $XX_DESKTOP: '(min-width: 1920px)'
+);

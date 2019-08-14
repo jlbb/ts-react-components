@@ -1,12 +1,13 @@
 /* eslint-disable */
+const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
     mode: 'development',
     devtool: 'inline-source-map',
-    
+
     entry: ['webpack/hot/only-dev-server'],
-    
+
     devServer: {
         historyApiFallback: true,
         host: 'localhost',
@@ -40,6 +41,8 @@ module.exports = {
                         loader: 'sass-loader',
                         options: {
                             sourceMap: true,
+                            data: '@import "config";',
+                            includePaths: ['src/styles'],
                         },
                     },
                 ],
