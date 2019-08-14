@@ -28,6 +28,16 @@ module.exports = {
     
     optimization: {
         minimizer: [new TerserPlugin({ sourceMap: true })],
+        namedChunks: true,
+        splitChunks: {
+            cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all',
+                },
+            },
+        },
     },
     plugins: [cssPlugin, minifyCSS({})],
 
