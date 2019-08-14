@@ -1,26 +1,27 @@
 html, body {
-  font-family: 'IcoMoon-Free', 'sans-serif';
+    font-family: 'IcoMoon-Free', 'sans-serif';
 }
 
 img {
-  width: 128px;
-  height: 128px;
+    width: 128px;
+    height: 128px;
 }
 
 .learning-icon {
-  width: 50px;
-  height: 50px;
-  background-image: url('../../public/images/icon-learning.png');
-  background-size: 100% 100%;
+    width: 50px;
+    height: 50px;
+    background-image: url('../../public/images/icon-learning.png');
+    background-size: 100% 100%;
 }
 
 .title {
-  color: $color-black;
+    color: $color-black;
+    user-select: none;
 }
 
 #app {
-  .header {
-    font-size: 20px;
-    color: blueviolet;
-  }
+    .header {
+        font-size: 20px;
+        color: blueviolet;
+    }
 }
