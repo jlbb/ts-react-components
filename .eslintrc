@@ -1,6 +1,11 @@
 {
     "parser": "@typescript-eslint/parser",
-    "extends": ["plugin:@typescript-eslint/recommended", "prettier/@typescript-eslint", "plugin:prettier/recommended"],
+    "extends": ["plugin:@typescript-eslint/recommended", "prettier/@typescript-eslint", "plugin:prettier/recommended", "plugin:react/recommended"],
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
     "parserOptions": {
         "ecmaVersion": 2018,
         "sourceType": "module"
@@ -36,6 +41,10 @@
             }
         ],
         "sort-keys": ["warn", "asc"],
+        "react/jsx-sort-props": ["warn", {
+            "callbacksLast": true,
+            "noSortAlphabetically": false
+        }],
         "@typescript-eslint/indent": [
             "error",
             4,
