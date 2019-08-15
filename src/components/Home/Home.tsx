@@ -1,29 +1,26 @@
 import * as React from 'react';
 import bem from 'bera';
 
-import Header from '../Header';
-
 type Props = typeof defaultProps;
 type State = typeof defaultState;
 
 const defaultProps = {};
 const defaultState = {};
 
-const componentClass = bem('app');
+const componentClass = bem('home');
 
-class App extends React.Component<Props, State> {
+class Home extends React.Component<Props, State> {
     static readonly defaultProps = defaultProps;
     readonly state = defaultState;
 
     render() {
         return (
             <div className={componentClass()}>
-                <Header />
-
-                {this.props.children}
+                <h1 className={componentClass('title')}>Hola public World!</h1>
+                <div className={componentClass('learningIcon')} />
             </div>
         );
     }
 }
 
-export default App;
+export default Home;

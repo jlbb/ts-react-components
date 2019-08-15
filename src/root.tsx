@@ -1,19 +1,25 @@
 import * as React from 'react';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
+
 import App from './components/App';
-import Header from './components/Header';
+import Home from './components/Home';
+
+import ReactDOM from 'react-dom';
 
 import './styles/globals.scss';
 
-class Root extends React.PureComponent {
-    render() {
-        return (
-            <div id="root">
-                <App>
-                    <Header />
-                </App>
-            </div>
-        );
-    }
-}
+const RootApp = () => {
+    return (
+        <Router>
+            <App>
+                <Route component={Home} exact path="/" />
+            </App>
+        </Router>
+    );
+};
 
-export default Root;
+ReactDOM.render(RootApp(), document.getElementById('root'));
+
+if (module.hot) {
+    module.hot.accept();
+}

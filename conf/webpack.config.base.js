@@ -9,7 +9,7 @@ const htmlPlugin = new HtmlWebPackPlugin({
 });
 
 module.exports = {
-    entry: [path.resolve(__dirname, '../src', 'index.tsx')],
+    entry: [path.resolve(__dirname, '../src', 'root.tsx')],
     output: {
         path: path.resolve(__dirname, '../dist'),
         filename: 'app.min.js',

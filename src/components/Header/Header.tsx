@@ -1,13 +1,36 @@
 import * as React from 'react';
+import bem from 'bera';
+
 import butterflyIcon from '../../../public/images/butterfly.svg';
 
-class Header extends React.Component {
+type Props = typeof defaultProps;
+type State = typeof defaultState;
+
+const defaultProps = { title: 'Hi world' };
+const defaultState = {
+    active: true,
+};
+
+const componentClass = bem('header');
+
+class Header extends React.Component<Props, State> {
+    static readonly defaultProps = defaultProps;
+    readonly state = defaultState;
+
+    printPropsState = (): void => {
+        console.log('Props: ', this.props);
+        console.log('State: ', this.state);
+    };
+
     render() {
+        this.printPropsState();
         return (
-            <div>
+            <div className={componentClass()}>
                 <img alt="" src={butterflyIcon} />
-                <span className={'icon-home'} />
-                <h1 className={'header'}>Wow World! This is TypeScript boilerplate (Header component). Using TS!</h1>
+                <span className={componentClass('icon-home')} />
+                <h1 className={componentClass('title')}>
+                    {this.props.title} This is TypeScript boilerplate (Header component). Using TS!
+                </h1>
             </div>
         );
     }
