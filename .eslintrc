@@ -6,11 +6,6 @@
         "plugin:prettier/recommended",
         "plugin:react/recommended"
     ],
-    "settings": {
-        "react": {
-            "version": "detect"
-        }
-    },
     "parserOptions": {
         "ecmaVersion": 2018,
         "sourceType": "module"
@@ -36,20 +31,23 @@
                 "ignoredNodes": ["JSXElement *", "JSXElement"]
             }
         ],
-        "sort-imports": [
+        "react/jsx-sort-props": [
             "warn",
             {
-                "ignoreCase": false,
-                "ignoreDeclarationSort": false,
-                "ignoreMemberSort": false,
-                "memberSyntaxSortOrder": ["all", "multiple", "single", "none"]
+                "callbacksLast": true,
+                "noSortAlphabetically": false
             }
         ],
         "sort-keys": ["warn", "asc"],
-        "react/jsx-sort-props": ["warn", {
-            "callbacksLast": true,
-            "noSortAlphabetically": false
-        }],
+//        "sort-imports": [
+//            "warn",
+//            {
+//                "ignoreCase": false,
+//                "ignoreDeclarationSort": false,
+//                "ignoreMemberSort": false,
+//                "memberSyntaxSortOrder": ["all", "multiple", "single", "none"]
+//            }
+//        ],
         "@typescript-eslint/indent": [
             "error",
             4,
