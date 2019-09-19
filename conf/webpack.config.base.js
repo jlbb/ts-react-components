@@ -14,7 +14,7 @@ module.exports = {
         path: path.resolve(__dirname, '../dist'),
         filename: 'app.min.js',
         hotUpdateChunkFilename: '__hmr/hot-update.js',
-        hotUpdateMainFilename: '__hmr/hot-update.json',
+        hotUpdateMainFilename: '__hmr/hot-update.[hash].json',
     },
     resolve: {
         extensions: ['.ts', '.js', '.tsx', '.jsx'],

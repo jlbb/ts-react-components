@@ -27,7 +27,6 @@ class Header extends React.Component<Props, State> {
         return (
             <div className={componentClass()}>
                 <img alt="" src={butterflyIcon} />
-                <span className={componentClass('icon-home')} />
                 <h1 className={componentClass('title')}>
                     {this.props.title} This is TypeScript boilerplate (Header component). Using TS!
                 </h1>

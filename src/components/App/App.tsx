@@ -1,8 +1,6 @@
 import React from 'react';
 import bem from 'bera';
 
-import Header from '../Header';
-
 type Props = typeof defaultProps;
 type State = typeof defaultState;
 
@@ -16,13 +14,7 @@ class App extends React.Component<Props, State> {
     readonly state = defaultState;
 
     render() {
-        return (
-            <div className={componentClass()}>
-                <Header />
-
-                {this.props.children}
-            </div>
-        );
+        return <div className={componentClass()}>{this.props.children}</div>;
     }
 }
 

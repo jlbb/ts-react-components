@@ -1,5 +1,6 @@
 import React from 'react';
 import bem from 'bera';
+import ToDoApp from '../ToDoApp';
 
 type Props = typeof defaultProps;
 type State = typeof defaultState;
@@ -16,8 +17,8 @@ class Home extends React.Component<Props, State> {
     render() {
         return (
             <div className={componentClass()}>
-                <h1 className={componentClass('title')}>Hola public World!</h1>
-                <div className={componentClass('learningIcon')} />
+                <h1 className={componentClass('title')}>ToDo List with hooks and GraphQL</h1>
+                <ToDoApp />
             </div>
         );
     }
