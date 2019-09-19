@@ -8,8 +8,10 @@ const InputForm = ({ addToDo }: any) => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        addToDo(value);
-        setValue('');
+        if (value !== '') {
+            addToDo(value);
+            setValue('');
+        }
     };
 
     const handleInputChange = (e: any) => {

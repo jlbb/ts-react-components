@@ -26,11 +26,16 @@ const ToDoApp = () => {
         setToDo([...todos, toDoItem]);
     };
 
+    const handleRemoveToDo = (id: number) => {
+        // TODO: handle add toDo with graphQL
+        setToDo([...todos.filter(todo => todo.id !== id)]);
+    };
+
     return (
         <div className={componentClass()}>
             <h3>ToDoApp using Hooks and GraphQL</h3>
             <InputForm addToDo={handleAddToDo} />
-            <ToDoList todos={todos} />
+            <ToDoList removeToDo={handleRemoveToDo} todos={todos} />
         </div>
     );
 };
