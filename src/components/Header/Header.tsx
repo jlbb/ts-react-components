@@ -1,12 +1,10 @@
 import React from 'react';
 import bem from 'bera';
 
-import butterflyIcon from '../../../public/images/butterfly.svg';
-
 type Props = typeof defaultProps;
 type State = typeof defaultState;
 
-const defaultProps = { title: 'Hi world' };
+const defaultProps = { title: 'Hi user' };
 const defaultState = {
     active: true,
 };
@@ -26,10 +24,7 @@ class Header extends React.Component<Props, State> {
         this.printPropsState();
         return (
             <div className={componentClass()}>
-                <img alt="" src={butterflyIcon} />
-                <h1 className={componentClass('title')}>
-                    {this.props.title} This is TypeScript boilerplate (Header component). Using TS!
-                </h1>
+                <h1 className={componentClass('title')}>{this.props.title}, this is a React project with TypeScript</h1>
             </div>
         );
     }

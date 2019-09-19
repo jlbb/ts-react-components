@@ -1,5 +1,6 @@
 import React from 'react';
 import bem from 'bera';
+import Header from '../Header';
 import ToDoApp from '../ToDoApp';
 
 type Props = typeof defaultProps;
@@ -17,7 +18,7 @@ class Home extends React.Component<Props, State> {
     render() {
         return (
             <div className={componentClass()}>
-                <h1 className={componentClass('title')}>ToDo List with hooks and GraphQL</h1>
+                <Header />
                 <ToDoApp />
             </div>
         );

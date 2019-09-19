@@ -1,15 +1,4 @@
-.home__title {
-  color: $color-black;
-
-  @include respond-to($MOBILE) {
-    color: $color-lime-green;
-  }
-}
-
-// TODO: Set variable for images path
-.home__learningIcon {
-  width: 50px;
-  height: 50px;
-  background-image: url('../../../public/images/icon-learning.png');
-  background-size: 100% 100%;
+.toDoApp {
+  border: 1px dashed $color-grey-light;
+  padding: 0 15px 15px;
 }

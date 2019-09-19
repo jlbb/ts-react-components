@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import bem from 'bera';
 import ToDoList from '../ToDoList';
+import InputForm from '../InputForm';
 
 const componentClass = bem('toDoApp');
 
-export type TypeToDo = typeof defaultToDo;
-
+type TypeToDo = typeof defaultToDo;
 const defaultToDo = [
     {
         description: 'Default ToDo',
@@ -15,13 +15,25 @@ const defaultToDo = [
 
 //https://medium.com/@woltter.xavier/simple-react-w-hooks-graphql-application-6985cd113079
 const ToDoApp = () => {
-    const [todos] = useState<TypeToDo>(defaultToDo);
+    const [todos, setToDo] = useState<TypeToDo>(defaultToDo);
+
+    const handleAddToDo = (value: string) => {
+        // TODO: handle add toDo with graphQL
+        const toDoItem = {
+            description: value,
+            id: todos.length + 1,
+        };
+        setToDo([...todos, toDoItem]);
+    };
 
     return (
         <div className={componentClass()}>
+            <h3>ToDoApp using Hooks and GraphQL</h3>
+            <InputForm addToDo={handleAddToDo} />
             <ToDoList todos={todos} />
         </div>
     );
 };
 
+export { TypeToDo };
 export default ToDoApp;
