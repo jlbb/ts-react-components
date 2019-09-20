@@ -38,7 +38,7 @@
                 "noSortAlphabetically": false
             }
         ],
-        "sort-keys": ["warn", "asc"],
+//        "sort-keys": ["warn", "asc"],
 //        "sort-imports": [
 //            "warn",
 //            {

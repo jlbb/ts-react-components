@@ -4,19 +4,17 @@ import { TypeToDo } from '../ToDoApp';
 
 const componentClass = bem('toDoList');
 
-const ToDoList = ({ todos, removeToDo }: { todos: TypeToDo; removeToDo: any }) => {
+const ToDoList = ({ todo, removeToDo }: { todo: TypeToDo; removeToDo: any }) => {
     const renderToDoList = () => {
-        return todos.map((todo, i) => {
-            return (
-                <li className={componentClass('listItem')} key={`todo-${i}`}>
-                    {todo.description}
-                    <span
-                        className={`icon-box-remove ${componentClass('icon-removeItem')}`}
-                        onClick={() => removeToDo(todo.id)}
-                    />
-                </li>
-            );
-        });
+        return todo.map((toDoItem, i) => (
+            <li className={componentClass('listItem')} key={`todo-${i}`}>
+                {toDoItem.description}
+                <span
+                    className={`icon-box-remove ${componentClass('icon-removeItem')}`}
+                    onClick={() => removeToDo(toDoItem.id)}
+                />
+            </li>
+        ));
     };
 
     return (
