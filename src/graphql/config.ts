@@ -6,11 +6,15 @@ const schema = `
     id: String!,
     description: String!
   }
+  input ToDoItemInput {
+    id: String!,
+    description: String!
+  }
   type Query {
     toDoList: [TodoItem]!
   }
   type Mutation {
-    addToDoItem(item: ToDoItem!): [TodoItem]!
+    addToDoItem(toDoItem: ToDoItemInput!): TodoItem!
   }
 `;
 
@@ -22,10 +26,9 @@ export const resolvers = {
     Query: {
         toDoList: () => appState.toDoList,
     },
-    // eslint-disable-next-line sort-keys
     Mutation: {
-        addToDoItem: (_: any, toDoItem: object) => {
-            return [...appState.toDo, toDoItem];
+        addToDoItem: (_: any, { toDoItem }: { toDoItem: object }) => {
+            return { ...toDoItem, __typename: 'ToDoItem' };
         },
     },
 };

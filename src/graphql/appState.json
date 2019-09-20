@@ -1,6 +1,6 @@
 {
     "toDoList": [{
-        "id": 1,
+        "id": "1",
         "description": "default ToDo item via apollo",
         "__typename": "ToDoItem"
     }]

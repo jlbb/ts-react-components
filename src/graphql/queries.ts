@@ -8,9 +8,3 @@ export const GET_TODO_LIST_QUERY = gql`
         }
     }
 `;
-
-export const ADD_TODO_ITEM = gql`
-    mutation updateToDoItem($todoItem: object) {
-        updateToDoItem(todoItem: $todoItem) @client
-    }
-`;

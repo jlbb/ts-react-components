@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import bem from 'bera';
-import { useQuery } from '@apollo/react-hooks';
+import { useMutation, useQuery } from '@apollo/react-hooks';
 import ToDoList from '../ToDoList';
 import InputForm from '../InputForm';
 import { GET_TODO_LIST_QUERY } from '../../graphql/queries';
+import { ADD_TODO_ITEM } from '../../graphql/mutations';
 
 const componentClass = bem('toDoApp');
 
@@ -11,28 +12,16 @@ type TypeToDo = typeof defaultToDo;
 const defaultToDo = [
     {
         description: 'Default ToDo',
-        id: 1,
+        id: '1',
     },
 ];
 
 //https://medium.com/@woltter.xavier/simple-react-w-hooks-graphql-application-6985cd113079
 const ToDoApp = () => {
     const { loading, data } = useQuery(GET_TODO_LIST_QUERY);
+    const [addToDoItem] = useMutation(ADD_TODO_ITEM);
+
     const [todo, setToDo] = useState<TypeToDo>(defaultToDo);
-
-    const handleAddToDo = (value: string) => {
-        // TODO: handle add toDo with graphQL
-        const toDoItem = {
-            description: value,
-            id: todo.length + 1,
-        };
-        setToDo([...todo, toDoItem]);
-    };
-
-    const handleRemoveToDo = (id: number) => {
-        // TODO: handle add toDo with graphQL
-        setToDo([...todo.filter(toDoItem => toDoItem.id !== id)]);
-    };
 
     // When data has loaded, set it in the todo component state
     useEffect(() => {
@@ -40,6 +29,21 @@ const ToDoApp = () => {
             setToDo(data.toDoList);
         }
     }, [loading]);
+
+    const handleAddToDo = async (value: string) => {
+        // TODO: handle add toDo with graphQL
+        const toDoItem = {
+            id: `${todo.length + 1}`,
+            description: value,
+        };
+        const res = await addToDoItem({ variables: { toDoItem } });
+        setToDo([...todo, res.data.addToDoItem]);
+    };
+
+    const handleRemoveToDo = (id: string) => {
+        // TODO: handle add toDo with graphQL
+        setToDo([...todo.filter(toDoItem => toDoItem.id !== id)]);
+    };
 
     return (
         <div className={componentClass()}>
