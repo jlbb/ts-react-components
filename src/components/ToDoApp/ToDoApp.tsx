@@ -4,7 +4,7 @@ import { useMutation, useQuery } from '@apollo/react-hooks';
 import ToDoList from '../ToDoList';
 import InputForm from '../InputForm';
 import { GET_TODO_LIST_QUERY } from '../../graphql/queries';
-import { ADD_TODO_ITEM } from '../../graphql/mutations';
+import { ADD_TODO_ITEM, REMOVE_TODO_ITEM } from '../../graphql/mutations';
 import { TypeToDoItem, TypeToDoList } from './types';
 
 const componentClass = bem('toDoApp');
@@ -19,6 +19,7 @@ const defaultToDo = [
 const ToDoApp = () => {
     const { loading, data } = useQuery<TypeToDoList>(GET_TODO_LIST_QUERY);
     const [addToDoItem] = useMutation<TypeToDoItem>(ADD_TODO_ITEM);
+    const [removeToDoItem] = useMutation<TypeToDoItem>(REMOVE_TODO_ITEM);
 
     const handleAddToDo = async (value: string) => {
         const toDoItem = {
@@ -27,9 +28,8 @@ const ToDoApp = () => {
         await addToDoItem({ variables: { toDoItem } });
     };
 
-    const handleRemoveToDo = (id: string) => {
-        // TODO: handle add toDo with graphQL
-        // setToDo([...todo.filter(toDoItem => toDoItem.id !== id)]);
+    const handleRemoveToDo = async (id: number) => {
+        await removeToDoItem({ variables: { id } });
     };
 
     console.log('TODO (data from GET_TODO_LIST_QUERY)', data);

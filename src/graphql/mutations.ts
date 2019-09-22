@@ -8,3 +8,12 @@ export const ADD_TODO_ITEM = gql`
         }
     }
 `;
+
+export const REMOVE_TODO_ITEM = gql`
+    mutation RemoveToDoItem($id: ID!) {
+        removeToDoItem(id: $id) @client {
+            id
+            description
+        }
+    }
+`;
