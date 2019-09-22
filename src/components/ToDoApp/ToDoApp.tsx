@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import bem from 'bera';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import ToDoList from '../ToDoList';
@@ -11,45 +11,47 @@ const componentClass = bem('toDoApp');
 type TypeToDo = typeof defaultToDo;
 const defaultToDo = [
     {
-        description: 'Default ToDo',
         id: '1',
+        description: '',
     },
 ];
 
-//https://medium.com/@woltter.xavier/simple-react-w-hooks-graphql-application-6985cd113079
+const updateToDoListCache = (store: any, { data: updatedData }: any) => {
+    // Read the data from our cache for this query.
+    const res = store.readQuery({ query: GET_TODO_LIST_QUERY });
+    // Add our comment from the mutation to the end.
+    const data = { toDoList: res.toDoList.concat([updatedData.addToDoItem]) };
+    // Write our data back to the cache.
+    store.writeQuery({ query: GET_TODO_LIST_QUERY, data });
+};
+
 const ToDoApp = () => {
     const { loading, data } = useQuery(GET_TODO_LIST_QUERY);
     const [addToDoItem] = useMutation(ADD_TODO_ITEM);
 
-    const [todo, setToDo] = useState<TypeToDo>(defaultToDo);
-
-    // When data has loaded, set it in the todo component state
-    useEffect(() => {
-        if (!loading && data) {
-            setToDo(data.toDoList);
-        }
-    }, [loading]);
-
     const handleAddToDo = async (value: string) => {
-        // TODO: handle add toDo with graphQL
         const toDoItem = {
-            id: `${todo.length + 1}`,
+            id: `${data.toDoList.length + 1}`,
             description: value,
         };
-        const res = await addToDoItem({ variables: { toDoItem } });
-        setToDo([...todo, res.data.addToDoItem]);
+        await addToDoItem({
+            variables: { toDoItem },
+            update: updateToDoListCache,
+        });
     };
 
     const handleRemoveToDo = (id: string) => {
         // TODO: handle add toDo with graphQL
-        setToDo([...todo.filter(toDoItem => toDoItem.id !== id)]);
+        // setToDo([...todo.filter(toDoItem => toDoItem.id !== id)]);
     };
+
+    console.log('TODO (data from GET_TODO_LIST_QUERY)', data);
 
     return (
         <div className={componentClass()}>
             <h3>ToDoApp using Hooks and GraphQL</h3>
             <InputForm addToDo={handleAddToDo} />
-            <ToDoList removeToDo={handleRemoveToDo} todo={todo} />
+            <ToDoList removeToDo={handleRemoveToDo} todo={loading ? defaultToDo : data.toDoList} />
         </div>
     );
 };
