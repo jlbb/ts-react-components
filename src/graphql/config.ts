@@ -1,13 +1,13 @@
 import gql from 'graphql-tag';
 import appState from './appState.json';
+import { GET_TODO_LIST_QUERY } from './queries';
 
 const schema = `
   type ToDoItem {
-    id: String!,
+    id: ID!,
     description: String!
   }
   input ToDoItemInput {
-    id: String!,
     description: String!
   }
   type Query {
@@ -27,8 +27,15 @@ export const resolvers = {
         toDoList: () => appState.toDoList,
     },
     Mutation: {
-        addToDoItem: (_: any, { toDoItem }: { toDoItem: object }) => {
-            return { ...toDoItem, __typename: 'ToDoItem' };
+        addToDoItem: (_: any, { toDoItem }: { toDoItem: object }, { cache }: any) => {
+            const cacheQuery = cache.readQuery({ query: GET_TODO_LIST_QUERY });
+
+            const newToDoItem = { id: cacheQuery.toDoList.length + 1, ...toDoItem, __typename: 'ToDoItem' };
+
+            const data = { toDoList: cacheQuery.toDoList.concat([newToDoItem]) };
+            cache.writeQuery({ query: GET_TODO_LIST_QUERY, data });
+
+            return newToDoItem;
         },
     },
 };

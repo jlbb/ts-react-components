@@ -1,13 +1,13 @@
 import React from 'react';
 import bem from 'bera';
-import { TypeToDo } from '../ToDoApp';
+import { TypeToDoList } from '../ToDoApp/types';
 
 const componentClass = bem('toDoList');
 
-const ToDoList = ({ todo, removeToDo }: { todo: TypeToDo; removeToDo: any }) => {
+const ToDoList = ({ todo, removeToDo }: { todo: TypeToDoList['toDoList']; removeToDo: any }) => {
     const renderToDoList = () => {
-        return todo.map((toDoItem, i) => (
-            <li className={componentClass('listItem')} key={`todo-${i}`}>
+        return todo.map(toDoItem => (
+            <li className={componentClass('listItem')} key={`todo-${toDoItem.id}`}>
                 {toDoItem.description}
                 <span
                     className={`icon-box-remove ${componentClass('icon-removeItem')}`}
