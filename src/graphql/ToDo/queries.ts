@@ -5,6 +5,7 @@ export const GET_TODO_LIST_QUERY = gql`
         toDoList @client {
             id
             description
+            completed
         }
     }
 `;

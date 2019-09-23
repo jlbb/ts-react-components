@@ -7,9 +7,11 @@ const typeDefs = gql`
     type ToDoItem {
         id: ID!
         description: String!
+        completed: Boolean!
     }
     input ToDoItemInput {
         description: String!
+        completed: Boolean
     }
     type Query {
         toDoList: [ToDoItem]!

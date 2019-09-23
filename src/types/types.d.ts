@@ -2,6 +2,8 @@ export type Maybe<T> = T | null;
 
 export interface ToDoItemInput {
     description: string;
+
+    completed?: Maybe<boolean>;
 }
 
 // ====================================================
@@ -16,6 +18,8 @@ export interface ToDoItem {
     id: string;
 
     description: string;
+
+    completed: boolean;
 }
 
 export interface Mutation {
@@ -96,10 +100,13 @@ export namespace ToDoItemResolvers {
         id?: IdResolver<string, TypeParent, TContext>;
 
         description?: DescriptionResolver<string, TypeParent, TContext>;
+
+        completed?: CompletedResolver<boolean, TypeParent, TContext>;
     }
 
     export type IdResolver<R = string, Parent = ToDoItem, TContext = {}> = Resolver<R, Parent, TContext>;
     export type DescriptionResolver<R = string, Parent = ToDoItem, TContext = {}> = Resolver<R, Parent, TContext>;
+    export type CompletedResolver<R = boolean, Parent = ToDoItem, TContext = {}> = Resolver<R, Parent, TContext>;
 }
 
 export namespace MutationResolvers {

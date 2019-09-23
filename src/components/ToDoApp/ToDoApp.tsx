@@ -3,9 +3,9 @@ import bem from 'bera';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import ToDoListComponent from '../ToDoList';
 import InputForm from '../InputForm';
-import { GET_TODO_LIST_QUERY } from '../../graphql/queries';
-import { ADD_TODO_ITEM, REMOVE_TODO_ITEM } from '../../graphql/mutations';
-import { ToDoItem, ToDoList } from '../../types/types';
+import { GET_TODO_LIST_QUERY } from '../../graphql/ToDo/queries';
+import { ADD_TODO_ITEM, REMOVE_TODO_ITEM } from '../../graphql/ToDo/mutations';
+import { ToDoItem, ToDoItemInput, ToDoList } from '../../types/types';
 
 const componentClass = bem('toDoApp');
 
@@ -14,6 +14,7 @@ const defaultToDo = {
         {
             id: '1',
             description: '',
+            completed: false,
         },
     ],
 };
@@ -24,7 +25,7 @@ const ToDoApp = () => {
     const [removeToDoItem] = useMutation<ToDoItem>(REMOVE_TODO_ITEM);
 
     const handleAddToDo = async (value: string) => {
-        const toDoItem = {
+        const toDoItem: ToDoItemInput = {
             description: value,
         };
         await addToDoItem({ variables: { toDoItem } });
