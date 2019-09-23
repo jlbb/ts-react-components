@@ -1,20 +1,23 @@
 import React from 'react';
 import bem from 'bera';
-import { TypeToDoList } from '../ToDoApp/types';
+import { Maybe, ToDoItem, ToDoList } from '../../types/types';
 
 const componentClass = bem('toDoList');
 
-const ToDoList = ({ todo, removeToDo }: { todo: TypeToDoList['toDoList']; removeToDo: any }) => {
+const ToDoListComponent = ({ todo, removeToDo }: { todo: ToDoList; removeToDo: any }) => {
     const renderToDoList = () => {
-        return todo.map(toDoItem => (
-            <li className={componentClass('listItem')} key={`todo-${toDoItem.id}`}>
-                {toDoItem.description}
-                <span
-                    className={`icon-box-remove ${componentClass('icon-removeItem')}`}
-                    onClick={() => removeToDo(toDoItem.id)}
-                />
-            </li>
-        ));
+        return todo.toDoList.map(
+            (toDoItem: Maybe<ToDoItem>) =>
+                toDoItem && (
+                    <li className={componentClass('listItem')} key={`todo-${toDoItem.id}`}>
+                        {toDoItem.description}
+                        <span
+                            className={`icon-box-remove ${componentClass('icon-removeItem')}`}
+                            onClick={() => removeToDo(toDoItem.id)}
+                        />
+                    </li>
+                ),
+        );
     };
 
     return (
@@ -24,4 +27,4 @@ const ToDoList = ({ todo, removeToDo }: { todo: TypeToDoList['toDoList']; remove
     );
 };
 
-export default ToDoList;
+export default ToDoListComponent;
