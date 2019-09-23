@@ -5,6 +5,7 @@ export const ADD_TODO_ITEM = gql`
         addToDoItem(toDoItem: $toDoItem) @client {
             id
             description
+            completed
         }
     }
 `;
@@ -14,6 +15,17 @@ export const REMOVE_TODO_ITEM = gql`
         removeToDoItem(id: $id) @client {
             id
             description
+            completed
+        }
+    }
+`;
+
+export const UPDATE_TODO_ITEM = gql`
+    mutation UpdateToDoItem($toDoItem: ToDoItemInput!) {
+        updateToDoItem(toDoItem: $toDoItem) @client {
+            id
+            description
+            completed
         }
     }
 `;

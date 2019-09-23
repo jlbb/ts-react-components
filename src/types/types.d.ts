@@ -1,6 +1,8 @@
 export type Maybe<T> = T | null;
 
 export interface ToDoItemInput {
+    id?: Maybe<string>;
+
     description: string;
 
     completed?: Maybe<boolean>;
@@ -26,6 +28,8 @@ export interface Mutation {
     addToDoItem: ToDoItem;
 
     removeToDoItem: ToDoItem;
+
+    updateToDoItem: ToDoItem;
 }
 
 export interface ToDoList {
@@ -41,6 +45,9 @@ export interface AddToDoItemMutationArgs {
 }
 export interface RemoveToDoItemMutationArgs {
     id: string;
+}
+export interface UpdateToDoItemMutationArgs {
+    toDoItem: ToDoItemInput;
 }
 
 import { GraphQLResolveInfo } from 'graphql';
@@ -114,26 +121,38 @@ export namespace MutationResolvers {
         addToDoItem?: AddToDoItemResolver<ToDoItem, TypeParent, TContext>;
 
         removeToDoItem?: RemoveToDoItemResolver<ToDoItem, TypeParent, TContext>;
+
+        updateToDoItem?: UpdateToDoItemResolver<ToDoItem, TypeParent, TContext>;
     }
 
     export type AddToDoItemResolver<R = ToDoItem, Parent = {}, TContext = {}> = Resolver<
-    R,
-    Parent,
-    TContext,
-    AddToDoItemArgs
+        R,
+        Parent,
+        TContext,
+        AddToDoItemArgs
     >;
     export interface AddToDoItemArgs {
         toDoItem: ToDoItemInput;
     }
 
     export type RemoveToDoItemResolver<R = ToDoItem, Parent = {}, TContext = {}> = Resolver<
-    R,
-    Parent,
-    TContext,
-    RemoveToDoItemArgs
+        R,
+        Parent,
+        TContext,
+        RemoveToDoItemArgs
     >;
     export interface RemoveToDoItemArgs {
         id: string;
+    }
+
+    export type UpdateToDoItemResolver<R = ToDoItem, Parent = {}, TContext = {}> = Resolver<
+        R,
+        Parent,
+        TContext,
+        UpdateToDoItemArgs
+    >;
+    export interface UpdateToDoItemArgs {
+        toDoItem: ToDoItemInput;
     }
 }
 
@@ -143,9 +162,9 @@ export namespace ToDoListResolvers {
     }
 
     export type ToDoListResolver<R = (Maybe<ToDoItem>)[], Parent = ToDoList, TContext = {}> = Resolver<
-    R,
-    Parent,
-    TContext
+        R,
+        Parent,
+        TContext
     >;
 }
 

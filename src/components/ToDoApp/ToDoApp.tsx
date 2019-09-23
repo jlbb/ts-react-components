@@ -4,7 +4,7 @@ import { useMutation, useQuery } from '@apollo/react-hooks';
 import ToDoListComponent from '../ToDoList';
 import InputForm from '../InputForm';
 import { GET_TODO_LIST_QUERY } from '../../graphql/ToDo/queries';
-import { ADD_TODO_ITEM, REMOVE_TODO_ITEM } from '../../graphql/ToDo/mutations';
+import { ADD_TODO_ITEM, REMOVE_TODO_ITEM, UPDATE_TODO_ITEM } from '../../graphql/ToDo/mutations';
 import { ToDoItem, ToDoItemInput, ToDoList } from '../../types/types';
 
 const componentClass = bem('toDoApp');
@@ -23,6 +23,7 @@ const ToDoApp = () => {
     const { loading, data } = useQuery<ToDoList>(GET_TODO_LIST_QUERY);
     const [addToDoItem] = useMutation<ToDoItem>(ADD_TODO_ITEM);
     const [removeToDoItem] = useMutation<ToDoItem>(REMOVE_TODO_ITEM);
+    const [updateToDoItem] = useMutation<ToDoItem>(UPDATE_TODO_ITEM);
 
     const handleAddToDo = async (value: string) => {
         const toDoItem: ToDoItemInput = {
@@ -35,13 +36,21 @@ const ToDoApp = () => {
         await removeToDoItem({ variables: { id } });
     };
 
+    const handleUpdateToDo = async (toDoItem: ToDoItemInput) => {
+        await updateToDoItem({ variables: { toDoItem } });
+    };
+
     console.log('TODO (data from GET_TODO_LIST_QUERY)', data);
 
     return (
         <div className={componentClass()}>
             <h3>ToDoApp using Hooks and GraphQL</h3>
             <InputForm addToDo={handleAddToDo} />
-            <ToDoListComponent removeToDo={handleRemoveToDo} todo={loading || !data ? defaultToDo : data} />
+            <ToDoListComponent
+                removeToDo={handleRemoveToDo}
+                todo={loading || !data ? defaultToDo : data}
+                updateToDo={handleUpdateToDo}
+            />
         </div>
     );
 };

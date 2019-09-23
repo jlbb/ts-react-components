@@ -1,7 +1,12 @@
 .toDoList__listItem {
-  max-width: 250px;
+  max-width: 350px;
 }
 
 .toDoList__icon-removeItem {
+  float: right;
+  margin-right: -50px;
+}
+
+.toDoList__checkbox {
   float: right;
 }

@@ -10,6 +10,7 @@ const typeDefs = gql`
         completed: Boolean!
     }
     input ToDoItemInput {
+        id: ID
         description: String!
         completed: Boolean
     }
@@ -19,6 +20,7 @@ const typeDefs = gql`
     type Mutation {
         addToDoItem(toDoItem: ToDoItemInput!): ToDoItem!
         removeToDoItem(id: ID!): ToDoItem!
+        updateToDoItem(toDoItem: ToDoItemInput!): ToDoItem!
     }
 `;
 

@@ -3,6 +3,7 @@
     "extends": [
         "plugin:@typescript-eslint/recommended",
         "prettier/@typescript-eslint",
+        "plugin:prettier/recommended",
         "plugin:react/recommended"
     ],
     "parserOptions": {
@@ -23,7 +24,8 @@
         {
             "files": ["types.d.ts"],
             "rules": {
-              "@typescript-eslint/interface-name-prefix": "warn"
+              "@typescript-eslint/interface-name-prefix": "warn",
+              "@typescript-eslint/indent": "warn"
             }
         }
     ],
