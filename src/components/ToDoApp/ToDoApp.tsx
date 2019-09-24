@@ -44,12 +44,12 @@ const ToDoApp = () => {
 
     return (
         <div className={componentClass()}>
-            <h3>ToDoApp using Hooks and GraphQL (and Apollo)</h3>
-            <InputForm addToDo={handleAddToDo} />
+            <h3>ToDoApp using Hooks and GraphQL(with Apollo)</h3>
+            <InputForm buttonLabel={'Add ToDo item'} onSubmitForm={handleAddToDo} />
             <ToDoListComponent
-                removeToDo={handleRemoveToDo}
-                todo={loading || !data ? defaultToDo : data}
-                updateToDo={handleUpdateToDo}
+                todo={loading || !data ? defaultToDo.toDoList : data.toDoList}
+                onRemoveToDo={handleRemoveToDo}
+                onUpdateToDo={handleUpdateToDo}
             />
         </div>
     );

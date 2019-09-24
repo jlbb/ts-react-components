@@ -1,12 +1,20 @@
 import React from 'react';
 import bem from 'bera';
-import { Maybe, ToDoItem, ToDoList } from '../../types/types';
+import { Maybe, ToDoItem } from '../../types/types';
 
 const componentClass = bem('toDoList');
 
-const ToDoListComponent = ({ todo, removeToDo, updateToDo }: { todo: ToDoList; removeToDo: any; updateToDo: any }) => {
+const ToDoListComponent = ({
+    todo,
+    onRemoveToDo,
+    onUpdateToDo,
+}: {
+    todo: Maybe<ToDoItem>[];
+    onRemoveToDo: any;
+    onUpdateToDo: any;
+}) => {
     const renderToDoList = () => {
-        return todo.toDoList.map(
+        return todo.map(
             (toDoItem: Maybe<ToDoItem>) =>
                 toDoItem && (
                     <li className={componentClass('listItem')} key={`todo-${toDoItem.id}`}>
@@ -15,11 +23,11 @@ const ToDoListComponent = ({ todo, removeToDo, updateToDo }: { todo: ToDoList; r
                             checked={toDoItem.completed}
                             className={componentClass('checkbox')}
                             type={'checkbox'}
-                            onChange={() => updateToDo({ ...toDoItem, completed: !toDoItem.completed })}
+                            onChange={() => onUpdateToDo({ ...toDoItem, completed: !toDoItem.completed })}
                         />
                         <span
                             className={`icon-box-remove ${componentClass('icon-removeItem')}`}
-                            onClick={() => removeToDo(toDoItem.id)}
+                            onClick={() => onRemoveToDo(toDoItem.id)}
                         />
                     </li>
                 ),

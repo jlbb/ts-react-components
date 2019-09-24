@@ -3,13 +3,13 @@ import bem from 'bera';
 
 const componentClass = bem('inputForm');
 
-const InputForm = ({ addToDo }: any) => {
+const InputForm = ({ onSubmitForm, buttonLabel }: { onSubmitForm: any; buttonLabel: string }) => {
     const [value, setValue] = useState<string>('');
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
         if (value !== '') {
-            addToDo(value);
+            onSubmitForm(value);
             setValue('');
         }
     };
@@ -22,7 +22,7 @@ const InputForm = ({ addToDo }: any) => {
     return (
         <form className={componentClass()} onSubmit={handleSubmit}>
             <input type="text" value={value} onChange={handleInputChange} />
-            <button type="submit">Add ToDo item</button>
+            <button type="submit">{buttonLabel}</button>
         </form>
     );
 };
