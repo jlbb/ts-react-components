@@ -7,14 +7,12 @@ $SMALL_MOBILE: 'SMALL_MOBILE';
 $MOBILE: 'MOBILE';
 $TABLET: 'TABLET';
 $DESKTOP: 'DESKTOP';
-$X_DESKTOP: 'X_DESKTOP';
-$XX_DESKTOP: 'XX_DESKTOP';
+$LARGE_DESKTOP: 'X_DESKTOP';
 
 $mediaQueries: (
-    $SMALL_MOBILE: 'max-width: 360px',
+    $SMALL_MOBILE: 'max-width: 359px',
     $MOBILE: '(min-width: 360px) and (max-width: 767px)',
     $TABLET: '(min-width: 768px) and (max-width: 1023px)',
-    $DESKTOP: '(min-width: 1024px) and (max-width: 1365px)',
-    $X_DESKTOP: '(min-width: 1366px)',
-    $XX_DESKTOP: '(min-width: 1920px)'
+    $DESKTOP: '(min-width: 1024px) and (max-width: 1600px)',
+    $LARGE_DESKTOP: '(min-width: 1601px)'
 );

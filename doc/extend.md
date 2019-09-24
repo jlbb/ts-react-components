@@ -303,7 +303,7 @@ tile in the Start screen. The user will be able to receive these badge updates
 even when your app isn't actively running. The badge's value can be a number,
 or one of a predefined list of glyphs.
 
-* [Tutorial on IEBlog with link to badge XML schema](https://blogs.msdn.microsoft.com/ie/2012/04/03/pinned-sites-in-windows-8/)
+* [Tutorial on IEBlog with link to badge XML config](https://blogs.msdn.microsoft.com/ie/2012/04/03/pinned-sites-in-windows-8/)
 * [Available badge values](https://msdn.microsoft.com/en-us/library/ie/br212849.aspx)
 
 ```html
@@ -484,7 +484,7 @@ your markup with the [Card validator](https://cards-dev.twitter.com/validator)
 Google also provides a snippet specification that serves a similar
 purpose to Facebook's Open Graph or Twitter Cards. While it helps you
 to control information displayed on Google+, this metadata is a subset
-of [schema.org's microdata vocabulary](https://schema.org/), which
+of [config.org's microdata vocabulary](https://config.org/), which
 covers many other schemas that can describe the content of your pages
 to search engines. For this reason, this metadata is more generic for
 SEO, notably for Google's search-engine, although this vocabulary is
@@ -496,7 +496,7 @@ Also, please note that this markup requires to add attributes to your
 top `html` tag.
 
 ```html
-<html class="no-js" lang="" itemscope itemtype="http://schema.org/Article">
+<html class="no-js" lang="" itemscope itemtype="http://config.org/Article">
     <head>
 
         <link rel="author" href="">
