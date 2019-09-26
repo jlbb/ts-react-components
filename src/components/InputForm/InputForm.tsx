@@ -3,7 +3,12 @@ import bem from 'bera';
 
 const componentClass = bem('inputForm');
 
-const InputForm = ({ onSubmitForm, buttonLabel }: { onSubmitForm: any; buttonLabel: string }) => {
+interface ToDoFormProps {
+    buttonLabel: string;
+    onSubmitForm: any;
+}
+
+const InputForm = ({ buttonLabel, onSubmitForm }: ToDoFormProps) => {
     const [value, setValue] = useState<string>('');
 
     const handleSubmit = (e: any) => {

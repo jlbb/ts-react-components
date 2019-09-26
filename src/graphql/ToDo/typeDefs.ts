@@ -1,7 +1,9 @@
 import gql from 'graphql-tag';
 
 const typeDefs = gql`
-    type ToDoList {
+    type ToDo {
+        id: ID!
+        name: String!
         toDoList: [ToDoItem]!
     }
     type ToDoItem {
@@ -10,17 +12,25 @@ const typeDefs = gql`
         completed: Boolean!
     }
     input ToDoItemInput {
-        id: ID
         description: String!
         completed: Boolean
     }
+    input ToDoItemInputUpdate {
+        id: ID!
+        description: String
+        completed: Boolean
+    }
     type Query {
-        toDoList: [ToDoItem]!
+        toDos: [ToDo]!
+        toDoItems: [ToDoItem]!
     }
     type Mutation {
-        addToDoItem(toDoItem: ToDoItemInput!): ToDoItem!
-        removeToDoItem(id: ID!): ToDoItem!
-        updateToDoItem(toDoItem: ToDoItemInput!): ToDoItem!
+        addToDo(name: String!): ToDo!
+        removeToDo(id: ID!): ToDo!
+        updateToDo(id: ID!, name: String!): ToDo!
+        addToDoItem(idToDo: ID!, toDoItem: ToDoItemInput!): ToDoItem!
+        removeToDoItem(idToDo: ID!, idToDoItem: ID!): ToDoItem!
+        updateToDoItem(idToDo: ID!, toDoItem: ToDoItemInputUpdate!): ToDoItem!
     }
 `;
 

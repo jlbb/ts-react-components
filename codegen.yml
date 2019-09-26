@@ -1,7 +1,8 @@
 # https://medium.com/open-graphql/type-safe-graphql-servers-3922b8a70e52
 # https://graphql-code-generator:com/docs/generated-config/typescript-resolvers#useindexsignature-boolean-default-value-false:
 
-schema: src/graphql/**/*.ts
+#schema: src/graphql/**/*.ts
+schema: http://localhost:7000/graphql
 overwrite: true
 watch: true
 generates:

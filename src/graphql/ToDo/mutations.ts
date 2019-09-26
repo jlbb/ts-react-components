@@ -16,8 +16,12 @@ const TODO_ITEM_FIELDS = gql`
 
 export const ROOT_GET_TODO_LIST_QUERY = gql`
     query GetToDoList {
-        toDoList @client {
-            ...ToDoItemFields
+        toDos {
+            id
+            name
+            toDoList {
+                ...ToDoItemFields
+            }
         }
     }
     ${TODO_ITEM_FIELDS}
@@ -26,9 +30,22 @@ export const ROOT_GET_TODO_LIST_QUERY = gql`
 // ***** MUTATIONS ***** //
 // ********************* //
 
+export const ADD_TODO = gql`
+    mutation AddToDoItem($name: String!) {
+        addToDo(name: $name) {
+            id
+            name
+            toDoList {
+                ...ToDoItemFields
+            }
+        }
+    }
+    ${TODO_ITEM_FIELDS}
+`;
+
 export const ADD_TODO_ITEM = gql`
-    mutation AddToDoItem($toDoItem: ToDoItemInput!) {
-        addToDoItem(toDoItem: $toDoItem) @client {
+    mutation AddToDoItem($idToDo: ID!, $toDoItem: ToDoItemInput!) {
+        addToDoItem(idToDo: $idToDo, toDoItem: $toDoItem) {
             ...ToDoItemFields
         }
     }
@@ -36,8 +53,8 @@ export const ADD_TODO_ITEM = gql`
 `;
 
 export const REMOVE_TODO_ITEM = gql`
-    mutation RemoveToDoItem($id: ID!) {
-        removeToDoItem(id: $id) @client {
+    mutation RemoveToDoItem($idToDo: ID!, $idToDoItem: ID!) {
+        removeToDoItem(idToDo: $idToDo, idToDoItem: $idToDoItem) {
             ...ToDoItemFields
         }
     }
@@ -45,8 +62,8 @@ export const REMOVE_TODO_ITEM = gql`
 `;
 
 export const UPDATE_TODO_ITEM = gql`
-    mutation UpdateToDoItem($toDoItem: ToDoItemInput!) {
-        updateToDoItem(toDoItem: $toDoItem) @client {
+    mutation UpdateToDoItem($idToDo: ID!, $toDoItem: ToDoItemInputUpdate!) {
+        updateToDoItem(idToDo: $idToDo, toDoItem: $toDoItem) {
             ...ToDoItemFields
         }
     }
