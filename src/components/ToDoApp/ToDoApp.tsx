@@ -1,12 +1,15 @@
 import React from 'react';
 import bem from 'bera';
-import { useMutation, useQuery } from '@apollo/react-hooks';
 import ToDoList from '../ToDoList';
 import InputForm from '../InputForm';
-import { ADD_TODO, ROOT_GET_TODO_LIST_QUERY } from '../../graphql/ToDo/mutations';
-import { ADD_TODO_ITEM, REMOVE_TODO_ITEM, UPDATE_TODO_ITEM } from '../../graphql/ToDo/mutations';
-import { ToDos, ToDo, ToDoItem, ToDoItemInput, ToDoItemInputUpdate, Maybe } from '../../types/types';
-// import { ToDo, ToDoItem, ToDoItemInput } from '../../types/types';
+import { ToDo, ToDoItemInput, ToDoItemInputUpdate, Maybe } from '../../types/types';
+import {
+    useAddToDo,
+    useAddToDoItemMutation,
+    useRemoveToDoItemMutation,
+    useToDosQuery,
+    useUpdateToDoItemMutation,
+} from './ToDoAppHooks';
 
 const componentClass = bem('toDoApp');
 
@@ -21,38 +24,37 @@ const defaultToDo = {
 };
 
 const ToDoApp = () => {
-    const { data: toDoData } = useQuery<ToDos>(ROOT_GET_TODO_LIST_QUERY);
-    const [addToDo] = useMutation<ToDo>(ADD_TODO);
-    const [addToDoItem] = useMutation<ToDoItem>(ADD_TODO_ITEM);
-    const [removeToDoItem] = useMutation<ToDoItem>(REMOVE_TODO_ITEM);
-    const [updateToDoItem] = useMutation<ToDoItem>(UPDATE_TODO_ITEM);
+    const toDos = useToDosQuery();
+    const addToDo = useAddToDo();
+    const addToDoItem = useAddToDoItemMutation();
+    const removeToDoItem = useRemoveToDoItemMutation();
+    const updateToDoItem = useUpdateToDoItemMutation();
 
     const handleAddToDo = async (name: string) => {
-        await addToDo({ variables: { name } });
+        await addToDo(name);
     };
 
     const handleAddToDoItem = async (idToDo: string, value: string) => {
         const toDoItem: ToDoItemInput = {
             description: value,
         };
-        await addToDoItem({ variables: { idToDo, toDoItem } });
+        await addToDoItem(idToDo, toDoItem);
     };
 
     const handleRemoveToDoItem = async (idToDo: string, idToDoItem: string) => {
-        await removeToDoItem({ variables: { idToDo, idToDoItem } });
+        await removeToDoItem(idToDo, idToDoItem);
     };
 
     const handleUpdateToDoItem = async (idToDo: string, toDoItem: ToDoItemInputUpdate) => {
-        await updateToDoItem({ variables: { idToDo, toDoItem } });
+        await updateToDoItem(idToDo, toDoItem);
     };
 
     const renderToDos = () => {
-        console.log('toDoData', toDoData, toDoData && toDoData.toDos[0]);
-        if (!toDoData || !toDoData.toDos) {
+        if (!toDos) {
             return null;
         }
 
-        return toDoData.toDos.map(
+        return toDos.map(
             (toDo: Maybe<ToDo>) =>
                 toDo && (
                     <div className={componentClass('toDoContainer')} key={toDo.id}>
@@ -71,9 +73,7 @@ const ToDoApp = () => {
         );
     };
 
-    console.log('TODO (data from ROOT_GET_TODO_LIST_QUERY)', toDoData);
-
-    // TODO useQuery needs to support a list of ToDo (change also backend)
+    console.log('TODO (data from ROOT_GET_TODO_LIST_QUERY)', toDos);
 
     return (
         <div className={componentClass()}>

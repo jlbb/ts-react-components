@@ -9,7 +9,7 @@ import {
 } from '../../types/types';
 import { idGenerator } from '../utils';
 import initialState from '../initialState.json';
-import { ROOT_GET_TODO_LIST_QUERY } from './mutations';
+import { ROOT_GET_TODO_LIST_QUERY } from './queries';
 
 const Query: QueryResolvers.Resolvers = {
     toDos: () => initialState.toDos,

@@ -8,6 +8,7 @@ const TODO_ITEM_FIELDS = gql`
         id
         description
         completed
+        __typename
     }
 `;
 
