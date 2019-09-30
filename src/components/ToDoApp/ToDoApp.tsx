@@ -7,6 +7,7 @@ import {
     useAddToDo,
     useAddToDoItemMutation,
     useRemoveToDoItemMutation,
+    useRemoveToDoMutation,
     useToDosQuery,
     useUpdateToDoItemMutation,
 } from '../../graphql/ToDo/hooks';
@@ -26,12 +27,17 @@ const defaultToDo = {
 const ToDoApp = () => {
     const toDos = useToDosQuery();
     const addToDo = useAddToDo();
+    const removeToDo = useRemoveToDoMutation();
     const addToDoItem = useAddToDoItemMutation();
     const removeToDoItem = useRemoveToDoItemMutation();
     const updateToDoItem = useUpdateToDoItemMutation();
 
     const handleAddToDo = async (name: string) => {
         await addToDo(name);
+    };
+
+    const handleRemoveToDo = async (id: string) => {
+        await removeToDo(id);
     };
 
     const handleAddToDoItem = async (idToDo: string, value: string) => {
@@ -58,7 +64,13 @@ const ToDoApp = () => {
             (toDo: Maybe<ToDo>) =>
                 toDo && (
                     <div className={componentClass('toDoContainer')} key={toDo.id}>
-                        <h3 className={'title'}>{toDo.name}</h3>
+                        <div className={componentClass('toDoControl')}>
+                            <h3 className={'title'}>{toDo.name}</h3>
+                            <span
+                                className={`icon-box-remove ${componentClass('icon-removeItem')}`}
+                                onClick={() => handleRemoveToDo(toDo.id)}
+                            />
+                        </div>
                         <InputForm
                             buttonLabel={'Add ToDo item'}
                             onSubmitForm={(value: string) => handleAddToDoItem(toDo.id, value)}

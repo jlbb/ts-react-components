@@ -32,8 +32,21 @@ export const ROOT_GET_TODO_LIST_QUERY = gql`
 // ********************* //
 
 export const ADD_TODO = gql`
-    mutation AddToDoItem($name: String!) {
+    mutation AddToDo($name: String!) {
         addToDo(name: $name) {
+            id
+            name
+            toDoList {
+                ...ToDoItemFields
+            }
+        }
+    }
+    ${TODO_ITEM_FIELDS}
+`;
+
+export const REMOVE_TODO = gql`
+    mutation RemoveToDo($id: ID!) {
+        removeToDo(id: $id) {
             id
             name
             toDoList {

@@ -10,3 +10,12 @@
 .toDoApp__toDoContainer .title {
   color: $color-lime-green;
 }
+
+.toDoApp__toDoControl {
+  display: flex;
+  align-items: center;
+}
+
+.toDoApp__toDoControl .toDoApp__icon-removeItem {
+  margin-left: 25px;
+}

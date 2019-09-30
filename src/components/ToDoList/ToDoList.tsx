@@ -4,7 +4,7 @@ import { Maybe, ToDoItem } from '../../types/types';
 
 const componentClass = bem('toDoList');
 
-const ToDoListComponent = ({
+const ToDoList = ({
     todo,
     onRemoveToDo,
     onUpdateToDo,
@@ -41,4 +41,4 @@ const ToDoListComponent = ({
     );
 };
 
-export default ToDoListComponent;
+export default ToDoList;

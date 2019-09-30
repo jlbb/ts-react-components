@@ -1,6 +1,13 @@
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import { Maybe, ToDo, ToDoItem, ToDoItemInput, ToDoItemInputUpdate, ToDos } from '../../types/types';
-import { ADD_TODO, ADD_TODO_ITEM, REMOVE_TODO_ITEM, ROOT_GET_TODO_LIST_QUERY, UPDATE_TODO_ITEM } from './queries';
+import {
+    ADD_TODO,
+    ADD_TODO_ITEM,
+    REMOVE_TODO,
+    REMOVE_TODO_ITEM,
+    ROOT_GET_TODO_LIST_QUERY,
+    UPDATE_TODO_ITEM,
+} from './queries';
 
 const useToDosQuery = () => {
     const { data } = useQuery<ToDos>(ROOT_GET_TODO_LIST_QUERY);
@@ -17,6 +24,20 @@ const useAddToDo = () => {
             update: (cache, { data }: any) => {
                 const cacheQuery: ToDos = cache.readQuery({ query: ROOT_GET_TODO_LIST_QUERY }) || { toDos: [] };
                 const updatedToDos = cacheQuery && data && cacheQuery.toDos.concat([data.addToDo]);
+                cache.writeQuery({ query: ROOT_GET_TODO_LIST_QUERY, data: { toDos: updatedToDos } });
+            },
+        });
+};
+
+const useRemoveToDoMutation = () => {
+    const [removeToDo] = useMutation<ToDo>(REMOVE_TODO);
+
+    return (id: string) =>
+        removeToDo({
+            variables: { id },
+            update: (cache, { data }: any) => {
+                const cacheQuery: ToDos = cache.readQuery({ query: ROOT_GET_TODO_LIST_QUERY }) || { toDos: [] };
+                const updatedToDos = cacheQuery && data && cacheQuery.toDos.filter(toDo => toDo && toDo.id !== id);
                 cache.writeQuery({ query: ROOT_GET_TODO_LIST_QUERY, data: { toDos: updatedToDos } });
             },
         });
@@ -75,4 +96,11 @@ const useUpdateToDoItemMutation = () => {
         });
 };
 
-export { useToDosQuery, useAddToDo, useAddToDoItemMutation, useUpdateToDoItemMutation, useRemoveToDoItemMutation };
+export {
+    useToDosQuery,
+    useAddToDo,
+    useRemoveToDoMutation,
+    useAddToDoItemMutation,
+    useUpdateToDoItemMutation,
+    useRemoveToDoItemMutation,
+};
