@@ -9,7 +9,7 @@ import {
     useRemoveToDoItemMutation,
     useToDosQuery,
     useUpdateToDoItemMutation,
-} from './ToDoAppHooks';
+} from '../../graphql/ToDo/hooks';
 
 const componentClass = bem('toDoApp');
 

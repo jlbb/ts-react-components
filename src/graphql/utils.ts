@@ -1,5 +1,3 @@
-const idGenerator = () => `${Math.floor(Math.random() * Math.pow(10, 15))}`;
-
 // https://github.com/apollographql/apollo-feature-requests/issues/6#issuecomment-465305186
 const stripTypenames = (obj: any, propToDelete: string) => {
     for (const property in obj) {
@@ -16,4 +14,4 @@ const stripTypenames = (obj: any, propToDelete: string) => {
     return obj;
 };
 
-export { idGenerator, stripTypenames };
+export { stripTypenames };

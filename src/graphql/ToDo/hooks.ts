@@ -1,12 +1,6 @@
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import { Maybe, ToDo, ToDoItem, ToDoItemInput, ToDoItemInputUpdate, ToDos } from '../../types/types';
-import {
-    ADD_TODO,
-    ADD_TODO_ITEM,
-    REMOVE_TODO_ITEM,
-    ROOT_GET_TODO_LIST_QUERY,
-    UPDATE_TODO_ITEM,
-} from '../../graphql/ToDo/queries';
+import { ADD_TODO, ADD_TODO_ITEM, REMOVE_TODO_ITEM, ROOT_GET_TODO_LIST_QUERY, UPDATE_TODO_ITEM } from './queries';
 
 const useToDosQuery = () => {
     const { data } = useQuery<ToDos>(ROOT_GET_TODO_LIST_QUERY);
