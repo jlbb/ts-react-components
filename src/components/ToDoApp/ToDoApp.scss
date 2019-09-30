@@ -1,0 +1,21 @@
+.toDoApp {
+  border: 1px dashed $color-grey-light;
+  padding: 0 15px 15px;
+}
+.toDoApp__toDoContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.toDoApp__toDoContainer .title {
+  color: $color-lime-green;
+}
+
+.toDoApp__toDoControl {
+  display: flex;
+  align-items: center;
+}
+
+.toDoApp__toDoControl .toDoApp__icon-removeItem {
+  margin-left: 25px;
+}

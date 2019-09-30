@@ -1,9 +1,9 @@
 @import "fonts";
 @import "normalize";
 
-html,
 body {
-    font-family: 'IcoMoon-Free', 'sans-serif';
+    min-height: 100vh;
+    padding: 15px;
 }
 
 img {

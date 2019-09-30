@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React from 'react';
+import bem from 'bera';
 
 type Props = typeof defaultProps;
 type State = typeof defaultState;
@@ -6,19 +7,14 @@ type State = typeof defaultState;
 const defaultProps = {};
 const defaultState = {};
 
+const componentClass = bem('app');
+
 class App extends React.Component<Props, State> {
     static readonly defaultProps = defaultProps;
     readonly state = defaultState;
 
     render() {
-        return (
-            <div>
-                <h1 className="title">Hola public World!</h1>
-                <div className={'learning-icon'} />
-
-                {this.props.children}
-            </div>
-        );
+        return <div className={componentClass()}>{this.props.children}</div>;
     }
 }
 

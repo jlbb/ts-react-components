@@ -1,11 +1,11 @@
 {
     "parser": "@typescript-eslint/parser",
-    "extends": ["plugin:@typescript-eslint/recommended", "prettier/@typescript-eslint", "plugin:prettier/recommended", "plugin:react/recommended"],
-    "settings": {
-        "react": {
-            "version": "detect"
-        }
-    },
+    "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "prettier/@typescript-eslint",
+        "plugin:prettier/recommended",
+        "plugin:react/recommended"
+    ],
     "parserOptions": {
         "ecmaVersion": 2018,
         "sourceType": "module"
@@ -20,6 +20,13 @@
             "rules": {
                 "@typescript-eslint/no-var-requires": "off"
             }
+        },
+        {
+            "files": ["types.d.ts"],
+            "rules": {
+              "@typescript-eslint/interface-name-prefix": "warn",
+              "@typescript-eslint/indent": "warn"
+            }
         }
     ],
     "rules": {
@@ -31,20 +38,23 @@
                 "ignoredNodes": ["JSXElement *", "JSXElement"]
             }
         ],
-        "sort-imports": [
+        "react/jsx-sort-props": [
             "warn",
             {
-                "ignoreCase": false,
-                "ignoreDeclarationSort": false,
-                "ignoreMemberSort": false,
-                "memberSyntaxSortOrder": ["all", "multiple", "single", "none"]
+                "callbacksLast": true,
+                "noSortAlphabetically": false
             }
         ],
-        "sort-keys": ["warn", "asc"],
-        "react/jsx-sort-props": ["warn", {
-            "callbacksLast": true,
-            "noSortAlphabetically": false
-        }],
+//        "sort-keys": ["warn", "asc"],
+//        "sort-imports": [
+//            "warn",
+//            {
+//                "ignoreCase": false,
+//                "ignoreDeclarationSort": false,
+//                "ignoreMemberSort": false,
+//                "memberSyntaxSortOrder": ["all", "multiple", "single", "none"]
+//            }
+//        ],
         "@typescript-eslint/indent": [
             "error",
             4,
