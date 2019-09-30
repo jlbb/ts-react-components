@@ -103,8 +103,8 @@
             "npm run lint:js:fix",
             "git add"
         ],
-        "test/**/*.(j|t)s?(x)": [
-            "npm run lint:js:fix",
+        "src/**/__tests__/**/*.(j|t)s?(x)": [
+            "npm run test",
             "git add"
         ]
     },
