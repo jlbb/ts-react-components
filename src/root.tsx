@@ -13,8 +13,10 @@ import Home from './components/Home';
 
 import './styles/globals.scss';
 
+const uriLink = 'http://localhost:7000/graphql';
+
 const httpLink = new HttpLink({
-    uri: 'http://localhost:7000/graphql',
+    uri: uriLink,
 });
 
 // @ts-ignore
