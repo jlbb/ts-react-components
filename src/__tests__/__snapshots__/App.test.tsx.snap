@@ -1,11 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App snapshot renders 1`] = `
+exports[`App snapshot with some children renders 1`] = `
 <div
-  className="app"
+  class="app"
 >
   <h1>
     Hi World!
   </h1>
+  <p>
+    Lorem ipsum
+  </p>
 </div>
+`;
+
+exports[`App snapshot without children renders 1`] = `
+<div
+  class="app"
+/>
 `;

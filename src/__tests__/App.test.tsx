@@ -1,5 +1,5 @@
 import * as React from 'react';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import App from '../components/App/App';
 
 describe('My App default test case', () => {
@@ -9,13 +9,17 @@ describe('My App default test case', () => {
 });
 
 describe('App', () => {
-    test('snapshot renders', () => {
-        const component = renderer.create(
+    test('snapshot without children renders', () => {
+        const { container } = render(<App />);
+        expect(container.firstChild).toMatchSnapshot();
+    });
+    test('snapshot with some children renders', () => {
+        const { container } = render(
             <App>
                 <h1>Hi World!</h1>
+                <p>Lorem ipsum</p>
             </App>,
         );
-        let tree = component.toJSON();
-        expect(tree).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
     });
 });
