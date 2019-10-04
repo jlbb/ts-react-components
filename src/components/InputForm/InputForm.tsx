@@ -26,8 +26,10 @@ const InputForm = ({ buttonLabel, onSubmitForm }: ToDoFormProps) => {
 
     return (
         <form className={componentClass()} onSubmit={handleSubmit}>
-            <input type="text" value={value} onChange={handleInputChange} />
-            <button type="submit">{buttonLabel}</button>
+            <input data-testid="textInput" type="text" value={value} onChange={handleInputChange} />
+            <button data-testid="submitButton" type="submit">
+                {buttonLabel}
+            </button>
         </form>
     );
 };
