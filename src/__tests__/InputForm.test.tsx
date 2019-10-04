@@ -18,8 +18,8 @@ describe('InputForm', () => {
         const newValue = 'Testing value';
         const { getByTestId } = render(<InputForm buttonLabel={buttonLabel} onSubmitForm={submitForm} />);
 
-        fireEvent.change(getByTestId('textInput'), { target: { value: newValue } });
-        getByTestId('submitButton').click();
+        fireEvent.change(getByTestId('inputForm-textInput'), { target: { value: newValue } });
+        getByTestId('inputForm-submitButton').click();
 
         expect(submitForm).toBeCalledWith(newValue);
         expect(submitForm).toHaveBeenCalledTimes(1);

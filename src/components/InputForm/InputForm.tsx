@@ -26,8 +26,8 @@ const InputForm = ({ buttonLabel, onSubmitForm }: ToDoFormProps) => {
 
     return (
         <form className={componentClass()} onSubmit={handleSubmit}>
-            <input data-testid="textInput" type="text" value={value} onChange={handleInputChange} />
-            <button data-testid="submitButton" type="submit">
+            <input data-testid="inputForm-textInput" type="text" value={value} onChange={handleInputChange} />
+            <button data-testid="inputForm-submitButton" type="submit">
                 {buttonLabel}
             </button>
         </form>

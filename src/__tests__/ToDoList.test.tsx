@@ -36,7 +36,7 @@ describe('ToDoList', () => {
     test('element renders and remove item callback is triggered', () => {
         const { getByTestId } = render(<ToDoList todo={todo} onRemoveToDo={removeToDo} onUpdateToDo={updateToDo} />);
 
-        getByTestId(`removeToDoItem-test1`).click();
+        getByTestId(`toDoList-testRemoveToDoItem-1`).click();
 
         expect(removeToDo).toBeCalledWith('1');
         expect(removeToDo).toHaveBeenCalledTimes(1);
@@ -46,7 +46,7 @@ describe('ToDoList', () => {
         const newItemCompleteValue = true;
         const { getByTestId } = render(<ToDoList todo={todo} onRemoveToDo={removeToDo} onUpdateToDo={updateToDo} />);
 
-        fireEvent.click(getByTestId('updateToDoItem-test1'), { target: { value: newItemCompleteValue } });
+        fireEvent.click(getByTestId('toDoList-testUpdateToDoItem-1'), { target: { value: newItemCompleteValue } });
 
         const updatedItem = { ...todo[0], completed: newItemCompleteValue };
 
