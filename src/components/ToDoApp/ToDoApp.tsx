@@ -63,11 +63,12 @@ const ToDoApp = () => {
         return toDos.map(
             (toDo: Maybe<ToDo>) =>
                 toDo && (
-                    <div className={componentClass('toDoContainer')} key={toDo.id}>
+                    <div className={componentClass('toDoContainer')} data-testid="toDoApp-fetchedData" key={toDo.id}>
                         <div className={componentClass('toDoControl')}>
                             <h3 className={'title'}>{toDo.name}</h3>
                             <span
                                 className={`icon-box-remove ${componentClass('icon-removeItem')}`}
+                                data-testid={`toDoApp-removeToDo-${toDo.id}`}
                                 onClick={() => handleRemoveToDo(toDo.id)}
                             />
                         </div>
@@ -85,12 +86,12 @@ const ToDoApp = () => {
         );
     };
 
-    console.log('TODO (data from ROOT_GET_TODO_LIST_QUERY)', toDos);
+    console.debug('TODO (data from ROOT_GET_TODO_LIST_QUERY)', toDos);
 
     return (
         <div className={componentClass()}>
             <h3>ToDoApp using React Hooks and GraphQL(with Apollo)</h3>
-            <InputForm buttonLabel={'Create ToDo list'} onSubmitForm={handleAddToDo} />
+            <InputForm buttonLabel={'Create ToDo list'} formType={'create'} onSubmitForm={handleAddToDo} />
             {renderToDos()}
         </div>
     );

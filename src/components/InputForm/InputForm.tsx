@@ -4,11 +4,12 @@ import bem from 'bera';
 const componentClass = bem('inputForm');
 
 interface ToDoFormProps {
+    formType?: string;
     buttonLabel: string;
     onSubmitForm: any;
 }
 
-const InputForm = ({ buttonLabel, onSubmitForm }: ToDoFormProps) => {
+const InputForm = ({ formType = 'add', buttonLabel, onSubmitForm }: ToDoFormProps) => {
     const [value, setValue] = useState<string>('');
 
     const handleSubmit = (e: any) => {
@@ -26,8 +27,13 @@ const InputForm = ({ buttonLabel, onSubmitForm }: ToDoFormProps) => {
 
     return (
         <form className={componentClass()} onSubmit={handleSubmit}>
-            <input data-testid="inputForm-textInput" type="text" value={value} onChange={handleInputChange} />
-            <button data-testid="inputForm-submitButton" type="submit">
+            <input
+                data-testid={`inputForm-textInput-${formType}`}
+                type="text"
+                value={value}
+                onChange={handleInputChange}
+            />
+            <button data-testid={`inputForm-submitButton-${formType}`} type="submit">
                 {buttonLabel}
             </button>
         </form>
