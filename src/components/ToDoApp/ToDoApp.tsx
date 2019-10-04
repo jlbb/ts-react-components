@@ -89,7 +89,7 @@ const ToDoApp = () => {
 
     return (
         <div className={componentClass()}>
-            <h3>ToDoApp using Hooks and GraphQL(with Apollo)</h3>
+            <h3>ToDoApp using React Hooks and GraphQL(with Apollo)</h3>
             <InputForm buttonLabel={'Create ToDo list'} onSubmitForm={handleAddToDo} />
             {renderToDos()}
         </div>

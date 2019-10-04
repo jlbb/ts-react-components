@@ -10,6 +10,7 @@ describe('Home', () => {
                 <Home />
             </MockedProvider>,
         );
+
         wait();
         expect(container.firstChild).toBeDefined();
     });
