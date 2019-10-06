@@ -5,6 +5,7 @@
 .editorconfig
 .eslintcache
 .idea
+coverage
 dist
 node_modules
 package-lock.json

@@ -15,7 +15,7 @@ const useToDosQuery = () => {
     return data && data.toDos;
 };
 
-const useAddToDo = () => {
+const useAddToDoMutation = () => {
     const [addToDo] = useMutation<ToDo>(ADD_TODO);
 
     return (name: string) =>
@@ -98,7 +98,7 @@ const useUpdateToDoItemMutation = () => {
 
 export {
     useToDosQuery,
-    useAddToDo,
+    useAddToDoMutation,
     useRemoveToDoMutation,
     useAddToDoItemMutation,
     useUpdateToDoItemMutation,

@@ -4,7 +4,7 @@ import ToDoList from '../ToDoList';
 import InputForm from '../InputForm';
 import { ToDo, ToDoItemInput, ToDoItemInputUpdate, Maybe } from '../../types/types';
 import {
-    useAddToDo,
+    useAddToDoMutation,
     useAddToDoItemMutation,
     useRemoveToDoItemMutation,
     useRemoveToDoMutation,
@@ -26,7 +26,7 @@ const defaultToDo = {
 
 const ToDoApp = () => {
     const toDos = useToDosQuery();
-    const addToDo = useAddToDo();
+    const addToDo = useAddToDoMutation();
     const removeToDo = useRemoveToDoMutation();
     const addToDoItem = useAddToDoItemMutation();
     const removeToDoItem = useRemoveToDoItemMutation();
@@ -63,11 +63,12 @@ const ToDoApp = () => {
         return toDos.map(
             (toDo: Maybe<ToDo>) =>
                 toDo && (
-                    <div className={componentClass('toDoContainer')} key={toDo.id}>
+                    <div className={componentClass('toDoContainer')} data-testid="toDoApp-fetchedData" key={toDo.id}>
                         <div className={componentClass('toDoControl')}>
                             <h3 className={'title'}>{toDo.name}</h3>
                             <span
                                 className={`icon-box-remove ${componentClass('icon-removeItem')}`}
+                                data-testid={`toDoApp-removeToDo-${toDo.id}`}
                                 onClick={() => handleRemoveToDo(toDo.id)}
                             />
                         </div>
@@ -85,12 +86,12 @@ const ToDoApp = () => {
         );
     };
 
-    console.log('TODO (data from ROOT_GET_TODO_LIST_QUERY)', toDos);
+    // console.log('ToDos (data from ROOT_GET_TODO_LIST_QUERY)', toDos);
 
     return (
         <div className={componentClass()}>
-            <h3>ToDoApp using Hooks and GraphQL(with Apollo)</h3>
-            <InputForm buttonLabel={'Create ToDo list'} onSubmitForm={handleAddToDo} />
+            <h3>ToDoApp using React Hooks and GraphQL(with Apollo)</h3>
+            <InputForm buttonLabel={'Create ToDo list'} formType={'create'} onSubmitForm={handleAddToDo} />
             {renderToDos()}
         </div>
     );

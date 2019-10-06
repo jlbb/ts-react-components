@@ -22,11 +22,13 @@ const ToDoList = ({
                         <input
                             checked={toDoItem.completed}
                             className={componentClass('checkbox')}
+                            data-testid={`toDoList-updateToDoItem-${toDoItem.id}`}
                             type={'checkbox'}
                             onChange={() => onUpdateToDo({ ...toDoItem, completed: !toDoItem.completed })}
                         />
                         <span
                             className={`icon-box-remove ${componentClass('icon-removeItem')}`}
+                            data-testid={`toDoList-removeToDoItem-${toDoItem.id}`}
                             onClick={() => onRemoveToDo(toDoItem.id)}
                         />
                     </li>
