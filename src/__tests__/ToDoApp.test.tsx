@@ -2,7 +2,7 @@ import * as React from 'react';
 import { render, cleanup, fireEvent, act } from '@testing-library/react';
 import ToDoApp from '../components/ToDoApp/ToDoApp';
 import { MockedProvider, MockedResponse, wait } from '@apollo/react-testing';
-import { ToDo, ToDoItem, ToDoItemInput, ToDos } from '../types/types';
+import { ToDo, ToDoItemInput, ToDoItemInputUpdate, ToDos } from '../types/types';
 import {
     ADD_TODO,
     ADD_TODO_ITEM,
@@ -23,49 +23,34 @@ let addToDoItemMutationCalled = false;
 let removeToDoItemMutationCalled = false;
 let updateToDoItemMutationCalled = false;
 
-const toDoList = [
-    {
-        id: '1',
-        description: 'Test ToDoItem 1',
-        completed: false,
-        __typename: 'ToDoItem',
-    },
-    {
-        id: '2',
-        description: 'Test ToDoItem 2',
-        completed: false,
-        __typename: 'ToDoItem',
-    },
-];
-const toDoItem: ToDoItem = toDoList[0];
-const toDo: ToDo = {
-    id: 'a1',
-    name: 'Test ToDo list',
-    toDoList: toDoList,
-};
-const addToDo: ToDo = {
-    id: 'a2',
-    name: 'New ToDo list',
+const newToDo: ToDo = {
+    id: '2',
+    name: 'New ToDo hooks test list',
     toDoList: [],
 };
-const removeToDo: ToDo = {
-    id: 'a1',
-    name: 'Test ToDo list',
-    toDoList: toDoList,
-};
 const newToDoItemInput: ToDoItemInput = {
-    description: 'New ToDoItem input',
+    description: 'Hook new ToDoItem',
 };
 const newToDoItem = {
-    id: '3',
-    description: 'New ToDoItem input',
+    id: '1',
+    ...newToDoItemInput,
     completed: false,
     __typename: 'ToDoItem',
 };
-const toDoItemUpdated = {
-    ...toDoItem,
-    completed: !toDoItem.completed,
+
+const toDoItem = {
+    id: 'a1',
+    description: 'ToDo item to remove',
+    completed: false,
+    __typename: 'ToDoItem',
 };
+const toDoItemUpdated: ToDoItemInputUpdate = { ...toDoItem, completed: !toDoItem.completed };
+const toDo: ToDo = {
+    id: 'a1',
+    name: 'Test ToDo list',
+    toDoList: [toDoItem],
+};
+
 const data: ToDos = {
     toDos: [toDo],
 };
@@ -83,24 +68,24 @@ const mocks: MockedResponse[] = [
         request: {
             query: ADD_TODO,
             variables: {
-                name: addToDo.name,
+                name: newToDo.name,
             },
         },
         result: () => {
             addToDoMutationCalled = true;
-            return { data: { addToDo } };
+            return { data: { addToDo: newToDo } };
         },
     },
     {
         request: {
             query: REMOVE_TODO,
             variables: {
-                id: removeToDo.id,
+                id: toDo.id,
             },
         },
         result: () => {
             removeToDoMutationCalled = true;
-            return { data: { removeToDo } };
+            return { data: { removeToDo: toDo } };
         },
     },
     {
@@ -187,7 +172,6 @@ describe('ToDoApp', () => {
 
 describe('ToDoApp invokes to', () => {
     test('add a new ToDo list', async () => {
-        const newValue = 'New ToDo list';
         const { getByTestId } = render(
             <MockedProvider addTypename={false} mocks={mocks}>
                 <ToDoApp />
@@ -198,7 +182,7 @@ describe('ToDoApp invokes to', () => {
 
         fireEvent.change(getByTestId('inputForm-textInput-create') as HTMLInputElement, {
             target: {
-                value: newValue,
+                value: newToDo.name,
             },
         });
 
@@ -219,7 +203,7 @@ describe('ToDoApp invokes to', () => {
 
         await _wait();
 
-        fireEvent.click(getByTestId(`toDoApp-removeToDo-${removeToDo.id}`));
+        fireEvent.click(getByTestId(`toDoApp-removeToDo-${toDo.id}`));
 
         await _wait();
         expect(removeToDoMutationCalled).toBe(true);

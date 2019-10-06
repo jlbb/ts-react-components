@@ -10,7 +10,7 @@ import {
     useUpdateToDoItemMutation,
 } from '../graphql/ToDo/hooks';
 import { cleanup } from '@testing-library/react';
-import { ToDo, ToDoItemInput, ToDos } from '../types/types';
+import { ToDo, ToDoItemInput, ToDoItemInputUpdate, ToDos } from '../types/types';
 import { MockedProvider, MockedResponse } from '@apollo/react-testing';
 import {
     ADD_TODO,
@@ -42,7 +42,7 @@ const toDoItem = {
     completed: true,
     __typename: 'ToDoItem',
 };
-const toDoItemUpdated = { ...toDoItem, description: 'Updated ToDo item' };
+const toDoItemUpdated: ToDoItemInputUpdate = { ...toDoItem, description: 'Updated ToDo item' };
 const toDo: ToDo = {
     id: 'a1',
     name: 'Test ToDo list',
