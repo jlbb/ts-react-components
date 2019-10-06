@@ -4,7 +4,7 @@ import ToDoList from '../ToDoList';
 import InputForm from '../InputForm';
 import { ToDo, ToDoItemInput, ToDoItemInputUpdate, Maybe } from '../../types/types';
 import {
-    useAddToDo,
+    useAddToDoMutation,
     useAddToDoItemMutation,
     useRemoveToDoItemMutation,
     useRemoveToDoMutation,
@@ -26,7 +26,7 @@ const defaultToDo = {
 
 const ToDoApp = () => {
     const toDos = useToDosQuery();
-    const addToDo = useAddToDo();
+    const addToDo = useAddToDoMutation();
     const removeToDo = useRemoveToDoMutation();
     const addToDoItem = useAddToDoItemMutation();
     const removeToDoItem = useRemoveToDoItemMutation();
@@ -86,7 +86,7 @@ const ToDoApp = () => {
         );
     };
 
-    console.debug('TODO (data from ROOT_GET_TODO_LIST_QUERY)', toDos);
+    // console.log('ToDos (data from ROOT_GET_TODO_LIST_QUERY)', toDos);
 
     return (
         <div className={componentClass()}>
