@@ -27,7 +27,7 @@ module.exports = {
     devtool: 'source-map',
     
     optimization: {
-        minimizer: [new TerserPlugin({ sourceMap: true })],
+        minimizer: [new TerserPlugin({ sourceMap: false })],
         namedChunks: true,
         splitChunks: {
             cacheGroups: {

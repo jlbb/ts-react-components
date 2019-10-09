@@ -16,7 +16,10 @@ const Header = (props?: Header): React.ReactElement => {
 
     return (
         <div className={componentClass()}>
-            <h1 className={componentClass('title')}>{title}, this is a React project with TypeScript</h1>
+            <h1 className={componentClass('title')}>
+                {title}, this is a React project with TypeScript (and deployed using Jenkins and Docker container for
+                building)
+            </h1>
         </div>
     );
 };

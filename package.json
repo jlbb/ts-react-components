@@ -5,7 +5,7 @@
     "license": "MIT",
     "scripts": {
         "generate-types": "gql-gen",
-        "build": "rimraf -rf dist & npm run lint:fix & webpack --env.NODE_ENV=production --config webpack.config.js",
+        "build": "rm -rf dist && webpack --env.NODE_ENV=production --config webpack.config.js",
         "build:serve": "npm run build & nodemon server/index.js",
         "serve": "nodemon server/index.js",
         "dev": "npm run generate-types & webpack-dev-server --colors --progess --jsx --config webpack.config.js",
