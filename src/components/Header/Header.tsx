@@ -18,7 +18,7 @@ const Header = (props?: Header): React.ReactElement => {
         <div className={componentClass()}>
             <h1 className={componentClass('title')}>
                 {title}, this is a React project with TypeScript (and deployed using Jenkins and Docker container for
-                building)
+                building). Creating Docker Image
             </h1>
         </div>
     );
