@@ -16,3 +16,23 @@ On Windows:
 `tskill PID`
 
 Remember to replace your the PID for the actual value returned in the terminal.
+
+** DOCKER **
+
+* Create Image:
+
+`time docker build -t react-docker .`
+
+* Run Container:
+
+`docker run --rm -d -p 3005:80 --name react-app-docker react-docker`
+
+* Compose containers:
+
+`docker-compose up`
+
+** OTHER COMMANDS **
+
+* Create shrinkwrap.json file:
+
+`npm shrinkwrap`

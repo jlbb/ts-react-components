@@ -4,9 +4,6 @@ FROM node:11.0.0 as builder
 # Change directory so that our commands run inside this new directory
 WORKDIR /usr/src/app
 
-# Run serve when the image is run.
-CMD npm run serve
-
 # Let Docker know about the port that serve runs on.
 EXPOSE 3005
 
@@ -26,10 +23,7 @@ RUN npm run test
 # Build app
 RUN npm run build
 
-CMD ["npm run serve;"]
-
 ### STAGE 2: Setup ###
-
 FROM nginx:1.15.1
 
 COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
