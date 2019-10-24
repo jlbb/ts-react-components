@@ -28,7 +28,7 @@ services:
       - 27017:27017
     networks:
       - webappnetwork
-  #creating a service called admin-mongo in case you run your mongodb storage locally and want to manage it
+  #creating a service called admin-mongo in case you want to connect and manage your mongodb locally
   #currently using mondogb atlas connection string so admin-mongodb doesn't need to be active
   # admin-mongodb:
   #   #pull down the official image from DockerHub registry

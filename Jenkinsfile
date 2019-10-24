@@ -1,32 +1,28 @@
 pipeline {
     agent {
         docker {
-            image 'node:11.0.0'
-            args '-u root'
+            image 'ts-react-component'
+            registryUrl "https://registry.hub.docker.com"
+            registryCredentialsId "dockerhub"
         }
     }
     environment {
         CI = 'true'
     }
     stages {
-        stage('Build') {
-            steps {
-                echo 'Building...'
-                sh 'rm -rf node_modules'
-                sh 'npm install'
-            }
+        stage("Build") {
+            docker.build("jlbb/ts-react-components")
         }
-        stage('Test') {
-            steps {
-                echo 'Testing...'
-                sh 'npm run test'
-            }
+
+        stage("Push") {
+            docker.push("${env.BUILD_ID}")
+            docker push("latest")
         }
-        stage('Deploying') {
-            steps {
-                echo 'Deploying...'
-                sh 'npm run build'
-            }
+        
+        stage("Pull & Up") {
+            docker.pull("jbpino/ts-react-app")
+            sh 'docker-compose build'
+            sh 'docker-compose up'
         }
     }
 }
