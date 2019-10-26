@@ -2,10 +2,10 @@
 FROM node:11.0.0 as server-builder
 
 #create a working directory
-WORKDIR /usr/src/app/graphqlServer
+WORKDIR /usr/src/app/api
 
 #copy package.json file under the working directory 
-COPY package.json /usr/src/app/graphqlServer/
+COPY package.json /usr/src/app/api/
 COPY npm-shrinkwrap.json npm-shrinkwrap.json
 
 # install all the dependencies 

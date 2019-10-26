@@ -29,7 +29,15 @@ Remember to replace your the PID for the actual value returned in the terminal.
 
 * Compose containers:
 
-`docker-compose up`
+`docker-compose build`
+
+* Compose up container (development):
+
+`docker-compose up -d`
+
+* Compose up container (production):
+
+`docker-compose -f docker-compose.yml -f docker-compose.production.yml up -d`
 
 ** OTHER COMMANDS **
 

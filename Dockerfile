@@ -23,6 +23,9 @@ RUN npm run test
 # Build app
 RUN npm run build
 
+# Clean-up all files except the build artifact just created
+RUN ls | grep -v "dist" | xargs rm -rf
+
 ### STAGE 2: Setup ###
 FROM nginx:1.15.1
 

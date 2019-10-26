@@ -9,6 +9,8 @@ const typeDefs = require('./modules/todo/graphqlSchema');
 // #2 Import GraphQL resolvers
 const resolvers = require('./modules/todo/resolvers');
 
+require('dotenv').config({ path: __dirname + '/./../.env' });
+
 // Connect Mongo database
 connectDB();
 
