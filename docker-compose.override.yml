@@ -1,5 +1,17 @@
-version: '3'
+version: '3.7'
 services:
+    client:
+        build:
+            target: builder
+        command: bash -c "npm rebuild node-sass && npm run dev"
+        environment:
+            NODE_ENV: development
+        ports:
+            - '8900:8900'
+        volumes:
+            - .:/usr/src/app
+            # Comment next line if you want to have HMR also on node_modules (recompilation gets very slow!)
+            - /usr/src/app/node_modules
     mongodb:
         volumes:
             - ./backend/data:/data/db

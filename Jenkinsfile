@@ -16,8 +16,11 @@ pipeline {
                         // Copy Mongo Database URI to the .env (created on the fly) file
                         sh 'echo MONGO_DB_URI=\"${MONGO_DB_URI}\" > .env'
                         
-                        sh 'docker-compose build'
-                        // sh 'docker-compose push'
+                        sh 'docker-compose rm -f'
+
+                        sh 'docker rmi $(docker-compose images -q) --force'
+
+                        sh 'docker-compose build --no-cache'
                     }
                 }
             }

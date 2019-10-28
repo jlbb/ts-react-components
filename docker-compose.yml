@@ -1,21 +1,23 @@
-version: '3'
+version: '3.7'
 services:
     client:
         image: 'jbpino/ts-react-app_client'
-        build: .
+        build:
+            context: .
         restart: always
         container_name: react-client
+        volumes: []
         ports:
             - '3005:80'
         networks:
             - webappnetwork
     api:
         image: 'jbpino/ts-react-app_api'
+        environment:
+            - MONGO_DB_URI=${MONGO_DB_URI}
         build: ./backend
         restart: always
         container_name: mongodb-api
-        environment:
-            - MONGO_DB_URI=${MONGO_DB_URI}
         ports:
             - '7000:7000'
         depends_on:
@@ -32,7 +34,7 @@ services:
         networks:
             - webappnetwork
     #creating a service called admin-mongo in case you want to connect and manage your mongodb locally
-    #currently using mondogb atlas connection string so admin-mongodb doesn't need to be active
+    #currently using mondogb atlas connection string so service admin-mongodb doesn't need to be active
     # admin-mongodb:
     #   #pull down the official image from DockerHub registry
     #   image: 0x59/admin-mongo:latest

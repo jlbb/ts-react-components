@@ -1,5 +1,5 @@
 #define the latest nodejs image  to build from
-FROM node:11.0.0 as server-builder
+FROM node:11.0.0-alpine as server-builder
 
 #create a working directory
 WORKDIR /usr/src/app/api

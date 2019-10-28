@@ -14,7 +14,8 @@ module.exports = {
 
     devServer: {
         historyApiFallback: true,
-        host: 'localhost',
+        // host: 'localhost',
+        host: '0.0.0.0', // to accept connections from outside container
         hot: true,
         inline: true,
         open: true,

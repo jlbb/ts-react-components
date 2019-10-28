@@ -13,6 +13,7 @@ const componentClass = bem('header');
 
 const Header = (props?: Header): React.ReactElement => {
     const [title] = useState<Header['title']>((props && props.title) || defaultHeader.title);
+    console.log(`Docker ${process.env.NODE_ENV} working!!`);
 
     return (
         <div className={componentClass()}>
