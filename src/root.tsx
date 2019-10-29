@@ -14,7 +14,7 @@ import Home from './components/Home';
 import './styles/globals.scss';
 
 let uriLink;
-console.log('ENVIRONMENT', process.env.NODE_ENV);
+console.log('ENVIRONMENT is:', process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'production') {
     uriLink = `https://pinolabs.gq/api/graphql`;
 } else {

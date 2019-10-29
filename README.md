@@ -27,6 +27,10 @@ Remember to replace your the PID for the actual value returned in the terminal.
 
 `time docker-compose build --no-cache`
 
+<!-- To run producion build pass compose files -->
+
+`time docker-compose -f docker-compose.yml -f docker-compose.production.yml build --no-cache`
+
 -   Run container:
 
 `docker run --rm -d -p 3005:80 --name react-app-docker react-docker`

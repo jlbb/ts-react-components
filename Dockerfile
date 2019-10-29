@@ -38,7 +38,7 @@ RUN npm run test
 FROM builder as production-builder
 RUN npm run build && ls | grep -v "dist" | xargs rm -rf;
 
-### STAGE 3: Setup for build image ###
+### STAGE 4: Setup for build image ###
 FROM nginx:1.15.1
 
 COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
