@@ -39,7 +39,7 @@ FROM builder as production-builder
 RUN npm run build && ls | grep -v "dist" | xargs rm -rf;
 
 ### STAGE 4: Setup for build image ###
-FROM nginx:1.15.1
+FROM nginx:1.15.1-alpine
 
 COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
 

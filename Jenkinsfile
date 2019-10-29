@@ -7,11 +7,8 @@ pipeline {
     stages {
         stage("Build") {
             steps {
+                sh 'docker-compose down --rmi=local -v'
                 sh 'docker-compose rm -fsv'
-
-                sh 'if [ $(docker-compose images -q | wc -l) -gt 0 ]; then \
-                        docker rmi $(docker-compose images -q) --force; \
-                    fi'
 
                 // Build image with Jenkins' docker-plugin
                 script {
@@ -22,10 +19,8 @@ pipeline {
                         sh 'docker-compose -f docker-compose.yml -f docker-compose.production.yml build --no-cache'
                     }
                 }
-
-                sh 'if [ $(docker images --filter dangling=true -q --no-trunc | wc -l) -gt 0 ]; then \
-                    docker rmi $(docker images --filter dangling=true -q --no-trunc) --force; \
-                fi'
+                
+                sh 'docker image prune -f'
             }
         }
 
@@ -33,24 +28,19 @@ pipeline {
             steps {
                 // Push image with Jenkins' docker-plugin
                 // With docker-compose installed in server we need gnupg2 => https://stackoverflow.com/a/57485107/1186541
-                withDockerRegistry([ credentialsId: 'dockerhub', url: "" ]) {
-                    // sh 'docker-compose push'
-                    sh 'docker tag jbpino/ts-react-app_client jbpino/ts-react-app_client:${BUILD_NUMBER}'
-                    sh 'docker push jbpino/ts-react-app_client:${BUILD_NUMBER}'
-                    sh 'docker push jbpino/ts-react-app_client'
-                    
+                withDockerRegistry([ credentialsId: 'dockerhub', url: "" ]) {                    
                     sh 'docker tag jbpino/ts-react-app_api:latest jbpino/ts-react-app_api:${BUILD_NUMBER}'
                     sh 'docker push jbpino/ts-react-app_api:${BUILD_NUMBER}'
                     sh 'docker push jbpino/ts-react-app_api'
+
+                    sh 'docker tag jbpino/ts-react-app_client jbpino/ts-react-app_client:${BUILD_NUMBER}'
+                    sh 'docker push jbpino/ts-react-app_client:${BUILD_NUMBER}'
+                    sh 'docker push jbpino/ts-react-app_client'
                 }
 
-                sh 'if [ $(docker-compose images -q | wc -l) -gt 0 ]; then \
-                    docker rmi $(docker-compose images -q) --force; \
-                fi'
-
                 sh 'docker rmi jbpino/ts-react-app_client:${BUILD_NUMBER}'
-                sh 'docker rmi jbpino/ts-react-app_client:latest'
                 sh 'docker rmi jbpino/ts-react-app_api:${BUILD_NUMBER}'
+                sh 'docker rmi jbpino/ts-react-app_client:latest'
                 sh 'docker rmi jbpino/ts-react-app_api:latest'
             }
         }
@@ -58,12 +48,6 @@ pipeline {
         stage("Pull") {
             steps {
                 sh 'docker-compose pull'
-            }
-        }
-
-        stage("Tests") {
-            steps {
-                sh 'echo TODO: Add image tests'
             }
         }
         
@@ -76,9 +60,7 @@ pipeline {
 
     post {
         always {
-            sh 'if [ $(docker images --filter dangling=true -q --no-trunc | wc -l) -gt 0 ]; then \
-                    docker rmi $(docker images --filter dangling=true -q --no-trunc) --force; \
-                fi'
+            sh 'docker system prune -f'
         }
     }
 }
