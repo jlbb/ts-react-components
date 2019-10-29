@@ -7,10 +7,15 @@ module.exports = {
     devtool: 'inline-source-map',
 
     entry: ['webpack/hot/only-dev-server'],
+    output: {
+        hotUpdateChunkFilename: '__hmr/hot-update.js',
+        hotUpdateMainFilename: '__hmr/hot-update.[hash].json',
+    },
 
     devServer: {
         historyApiFallback: true,
-        host: 'localhost',
+        // host: 'localhost',
+        host: '0.0.0.0', // to accept connections from outside container
         hot: true,
         inline: true,
         open: true,
