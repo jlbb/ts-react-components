@@ -9,7 +9,9 @@ pipeline {
             steps {
                 sh 'docker-compose rm -fsv'
 
-                sh 'docker rmi $(docker-compose images -q) --force'
+                sh 'if [ $(docker-compose images -q | wc -l) -gt 0 ]; then \
+                        docker rmi $(docker-compose images -q) --force; \
+                    fi'
 
                 // Build image with Jenkins' docker-plugin
                 script {
@@ -38,7 +40,9 @@ pipeline {
                     }
                 }
 
-                sh 'docker rmi $(docker-compose images -q) --force'
+                    sh 'if [ $(docker-compose images -q | wc -l) -gt 0 ]; then \
+                        docker rmi $(docker-compose images -q) --force; \
+                    fi'
             }
         }
 
@@ -63,7 +67,9 @@ pipeline {
 
     post {
         always {
-            sh 'docker rmi $(docker images --filter \"dangling=true\" -q --no-trunc) --force'
+            sh 'if [ $(docker images --filter dangling=true -q --no-trunc | wc -l) -gt 0 ]; then \
+                    docker rmi $(docker images --filter dangling=true -q --no-trunc) --force; \
+                fi'
         }
     }
 }
