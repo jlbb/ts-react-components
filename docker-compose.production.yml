@@ -1,0 +1,7 @@
+version: '3.7'
+services:
+    client:
+        environment:
+            NODE_ENV: production
+    mongodb:
+        volumes: []

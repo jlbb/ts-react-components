@@ -1,0 +1,16 @@
+# Items that don't need to be in a Docker image.
+# Anything not used by the build system should go here.
+.env
+Dockerfile
+docker-compose.yml
+README.md
+.dockerignore
+.gitignore
+.gitattributes
+conf/default.json
+
+# Artifacts that will be built during image creation.
+# This should contain all files created during `npm run build`.
+data
+doc
+node_modules

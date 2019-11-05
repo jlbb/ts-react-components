@@ -1,5 +1,5 @@
 // #1 Import the gql method from apollo-server-express
-const { gql } = require('apollo-server-express');
+const { gql } = require('apollo-server');
 
 // #2 Construct a schema with gql and using the GraphQL schema language
 const typeDefs = gql`
