@@ -6,7 +6,7 @@
     "scripts": {
         "generate-types": "gql-gen",
         "build": "rm -rf dist && webpack --env.NODE_ENV=production --config webpack.config.js",
-        "build:serve": "npm run build & nodemon server/index.js",
+        "build:serve": "npm run build; nodemon server/index.js",
         "serve": "node server/index.js",
         "docker:rm": "docker-compose rm -fsv",
         "docker:rmi:images": "docker rmi $(docker-compose images -q) --force",
