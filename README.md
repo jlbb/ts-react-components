@@ -20,9 +20,9 @@ The project will create a simple ToDo list web application where we will mainly 
 
     - Jenkins
 
-    - Containarization using Docker
+    - Docker for containerization
 
-    - In Progress: Container orchestration using Kubernetes
+_In Progress_: Container orchestration using Kubernetes
 
 ### How to run this app (development):
 
@@ -30,7 +30,7 @@ First of all, if we don't have a MongoDB Atlas URI to connect, we could install 
 
 An example of environment variable for a MongoDB URI:
 
-> MONGO_DB_URI=mongodb+srv://<dbuser>:<dbpassword>@<mongodb-atlas-cluster-name>.mongodb.net
+> MONGO_DB_URI=mongodb+srv://[dbuser]:[dbpassword]@[mongodb-atlas-cluster-name].mongodb.net
 
 Locally it can be:
 
@@ -44,7 +44,7 @@ To install it and run on MacOS:
 2. `brew install mongodb-community@4.2`
 3. `mongod --config /usr/local/etc/mongod.conf` add `--fork` flag to run in the background.
 
-Also, if you don't have Docker already installed in your local machine, you can download it from: https://hub.docker.com/?overlay=onboarding 
+Also, if you don't have Docker already installed in your local machine, you can download it from: https://hub.docker.com/?overlay=onboarding
 
 **Using Docker**
 
