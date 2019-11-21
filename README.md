@@ -44,7 +44,7 @@ To install it and run on MacOS:
 2. `brew install mongodb-community@4.2`
 3. `mongod --config /usr/local/etc/mongod.conf` add `--fork` flag to run in the background.
 
-Also, if you don't have Docker already installed in your local machine, you can download it from: https://hub.docker.com/?overlay=onboarding 
+Also, if you don't have Docker already installed in your local machine, you can download it from: https://hub.docker.com/?overlay=onboarding
 
 **Using Docker**
 
@@ -80,17 +80,21 @@ Using scripts, the client app will run at `localhost:3000`
 
 ### DOCKER commands
 
+**Building**
+
 -   Build docker image:
 
     `time docker build -t react-docker .`
 
 -   Build docker images from compose (fresh build)
 
-    `time docker-compose build --no-cache`
+    `time docker-compose build --no-cache [service]`
 
     <!-- To run producion build pass compose files -->
 
     `time docker-compose -f docker-compose.yml -f docker-compose.production.yml build --no-cache`
+
+**Running**
 
 -   Run container:
 
@@ -112,6 +116,22 @@ Using scripts, the client app will run at `localhost:3000`
 
     `docker-compose -f docker-compose.yml -f docker-compose.production.yml up -d`
 
+**Stopping**
+
+-   Stop container
+
+    `docker ps` to get the container id to stop
+
+    `docker stop [container id]`
+
+-   Stop compose containers, and optionally remove its volumes:
+
+    `docker-compose down`
+
+    `docker-compose down -v`
+
+**Cleaning up**
+
 -   Remove compose images:
 
     `docker rmi $(docker-compose images -q) --force`
@@ -120,19 +140,15 @@ Using scripts, the client app will run at `localhost:3000`
 
     `docker-compose rm -f`
 
--   Stop and remove compose containers and its volumes:
-
-    `docker-compose down -v`
-
--   Remove all images
+*   Remove all images
 
     `docker rmi $(docker images -q) --force`
 
--   Remove all (stopped) containers
+*   Remove all (stopped) containers
 
     `docker rm $(docker ps -q)`
 
--   Remove dangling images
+*   Remove dangling images
 
     `docker rmi $(docker images --filter \"dangling=true\" -q --no-trunc) --force`
 
