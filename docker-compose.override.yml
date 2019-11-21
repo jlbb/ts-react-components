@@ -10,7 +10,7 @@ services:
             - '8900:8900'
         volumes:
             - .:/usr/src/app
-            # Comment next line if you want to have HMR also on node_modules (recompilation gets very slow!)
+            # Comment next line if you want to have HMR also on node_modules (reload process gets very slow!)
             - /usr/src/app/node_modules
     mongodb:
         volumes:

@@ -4,9 +4,9 @@
     "description": "Backend using MongoDB and Apollo Server technologies",
     "main": "app.js",
     "dependencies": {
-        "apollo-server": "^2.9.7",
+        "apollo-server": "^2.9.12",
         "dotenv": "^8.2.0",
-        "mongoose": "^5.7.7"
+        "mongoose": "^5.7.12"
     },
     "scripts": {
         "server": "node app.js",
