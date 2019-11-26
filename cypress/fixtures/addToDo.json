@@ -1,0 +1,13 @@
+{
+    "operation": "AddToDo",
+    "response": {
+        "data": {
+            "addToDo": {
+                "id": "5ddd03e8230b120010fa1d3b",
+                "name": "Cypress list test",
+                "toDoList": [],
+                "__typename": "ToDo"
+            }
+        }
+    }
+}
