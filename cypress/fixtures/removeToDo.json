@@ -1,0 +1,13 @@
+{
+    "operation": "RemoveToDo",
+    "response": {
+        "data": {
+            "removeToDo": {
+                "id": "5ddcfcaa230b120010fa1d3a",
+                "name": "ToDo List 1",
+                "toDoList": [],
+                "__typename": "ToDo"
+            }
+        }
+    }
+}

@@ -203,7 +203,7 @@ describe('ToDoApp invokes to', () => {
 
         await _wait();
 
-        fireEvent.click(getByTestId(`toDoApp-removeToDo-${toDo.id}`));
+        fireEvent.click(getByTestId(`toDoApp-removeToDo`));
 
         await _wait();
         expect(removeToDoMutationCalled).toBe(true);
@@ -241,7 +241,7 @@ describe('ToDoApp invokes to', () => {
 
         await _wait();
 
-        fireEvent.click(getByTestId(`toDoList-removeToDoItem-${toDoItem.id}`));
+        fireEvent.click(getByTestId(`toDoList-removeToDoItem`));
 
         await _wait();
         expect(removeToDoItemMutationCalled).toBe(true);

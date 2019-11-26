@@ -28,7 +28,7 @@ const ToDoList = ({
                         />
                         <span
                             className={`icon-box-remove ${componentClass('icon-removeItem')}`}
-                            data-testid={`toDoList-removeToDoItem-${toDoItem.id}`}
+                            data-testid={`toDoList-removeToDoItem`}
                             onClick={() => onRemoveToDo(toDoItem.id)}
                         />
                     </li>

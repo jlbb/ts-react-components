@@ -15,7 +15,7 @@
                         },
                         {
                             "id": "5d8d3b06d2de4e53694347b8",
-                            "description": "Other ToDo item",
+                            "description": "Rats",
                             "completed": false,
                             "__typename": "ToDoItem"
                         }
@@ -35,6 +35,12 @@
                         {
                             "id": "5d8d3bb6d2de4e53694347be",
                             "description": "Dog",
+                            "completed": false,
+                            "__typename": "ToDoItem"
+                        },
+                        {
+                            "id": "5d8c6b1e30de4e53694347ba",
+                            "description": "Rats",
                             "completed": false,
                             "__typename": "ToDoItem"
                         }
