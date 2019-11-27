@@ -35,20 +35,25 @@ context('ToDo App - Add', () => {
 
         cy.get('.toDoApp > .toDoApp__toDoContainer')
             .first()
-            .find('[data-testid="inputForm-textInput-add"]')
-            .focus()
-            .type(text)
-            .should('have.value', text);
+            .within(cont => {
+                cy.wrap(cont)
+                    .find('[data-testid="inputForm-textInput-add"]')
+                    .focus()
+                    .type(text)
+                    .should('have.value', text);
 
-        cy.get('.toDoApp > .toDoApp__toDoContainer')
-            .first()
-            .find('[data-testid="inputForm-submitButton-add"]')
-            .click();
+                cy.wrap(cont)
+                    .find('.toDoList li')
+                    .should('not.contain', text);
 
-        cy.get('.toDoApp > .toDoApp__toDoContainer')
-            .first()
-            .contains('.toDoList li', text)
-            .should('contain', text);
+                cy.wrap(cont)
+                    .find('[data-testid="inputForm-submitButton-add"]')
+                    .click();
+
+                cy.wrap(cont)
+                    .find('.toDoList li')
+                    .should('contain', text);
+            });
     });
 });
 
@@ -60,11 +65,11 @@ context('ToDo app - Remove', () => {
     });
 
     it('it should remove a ToDo list', () => {
-        const text = 'ToDo List 1';
+        const listName = 'ToDo List 1';
 
         cy.get('.toDoApp > .toDoApp__toDoContainer .toDoApp__toDoControl').within(cont => {
             const container = cont.filter((key, value) => {
-                return value.querySelector('.title').innerText.includes(text);
+                return value.querySelector('.title').innerText.includes(listName);
             });
 
             cy.wrap(container)
@@ -72,15 +77,16 @@ context('ToDo app - Remove', () => {
                 .click();
         });
 
-        cy.get('.toDoApp > .toDoApp__toDoContainer .title').should('not.contain', text);
+        cy.get('.toDoApp > .toDoApp__toDoContainer .title').should('not.contain', listName);
     });
 
     it('it should remove a ToDo item from a list', () => {
+        const listName = 'Favourite Animals';
         const text = 'Rats';
 
         cy.get('.toDoApp > .toDoApp__toDoContainer').within(cont => {
             const container = cont.filter((key, value) => {
-                return value.querySelector('.title').innerText.includes('Favourite Animals');
+                return value.querySelector('.title').innerText.includes(listName);
             });
 
             cy.wrap(container)
@@ -103,11 +109,12 @@ context('ToDo app - Update', () => {
     });
 
     it('it should check a ToDo item as complete', () => {
+        const listName = 'Favourite Animals';
         const text = 'Cats';
 
         cy.get('.toDoApp > .toDoApp__toDoContainer').within(cont => {
             const container = cont.filter((key, value) => {
-                return value.querySelector('.title').innerText.includes('Favourite Animals');
+                return value.querySelector('.title').innerText.includes(listName);
             });
 
             cy.wrap(container)
