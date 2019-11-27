@@ -1,0 +1,53 @@
+{
+    "operation": "GetToDoList",
+    "response": {
+        "data": {
+            "toDos": [
+                {
+                    "id": "5d8b452e7b5a99322981e2ed",
+                    "name": "ToDo List 1",
+                    "toDoList": [
+                        {
+                            "id": "5d8b4a3179123832fbb8f8e4",
+                            "description": "I'm the first ToDo item",
+                            "completed": true,
+                            "__typename": "ToDoItem"
+                        },
+                        {
+                            "id": "5d8d3b06d2de4e53694347b8",
+                            "description": "Other ToDo item",
+                            "completed": false,
+                            "__typename": "ToDoItem"
+                        }
+                    ],
+                    "__typename": "ToDo"
+                },
+                {
+                    "id": "5d8c693983c4683874dee86b",
+                    "name": "ToDo List 2 - Favourite Animals",
+                    "toDoList": [
+                        {
+                            "id": "5d8c6b1e303d8e3957317038",
+                            "description": "Cats",
+                            "completed": false,
+                            "__typename": "ToDoItem"
+                        },
+                        {
+                            "id": "5d8d3bb6d2de4e53694347be",
+                            "description": "Dogs",
+                            "completed": false,
+                            "__typename": "ToDoItem"
+                        },
+                        {
+                            "id": "5d8c6b1e30de4e53694347ba",
+                            "description": "Rats",
+                            "completed": false,
+                            "__typename": "ToDoItem"
+                        }
+                    ],
+                    "__typename": "ToDo"
+                }
+            ]
+        }
+    }
+}

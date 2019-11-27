@@ -10,6 +10,8 @@ The project will create a simple ToDo list web application where we will mainly 
 
     - Component and hooks are tested using React Testing Library
 
+    - E2E testing with Cypress
+
 **Server**
 
     - Apollo GraphQL server

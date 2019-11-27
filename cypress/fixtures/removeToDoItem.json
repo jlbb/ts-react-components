@@ -1,0 +1,13 @@
+{
+    "operation": "RemoveToDoItem",
+    "response": {
+        "data": {
+            "removeToDoItem": {
+                "id": "5ddd1840230b120010fa1d3e",
+                "description": "Rats",
+                "completed": false,
+                "__typename": "ToDoItem"
+            }
+        }
+    }
+}

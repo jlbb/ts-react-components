@@ -68,7 +68,7 @@ const ToDoApp = () => {
                             <h3 className={'title'}>{toDo.name}</h3>
                             <span
                                 className={`icon-box-remove ${componentClass('icon-removeItem')}`}
-                                data-testid={`toDoApp-removeToDo-${toDo.id}`}
+                                data-testid={`toDoApp-removeToDo`}
                                 onClick={() => handleRemoveToDo(toDo.id)}
                             />
                         </div>
