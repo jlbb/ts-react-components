@@ -1,0 +1,13 @@
+{
+    "operation": "AddToDoItem",
+    "response": {
+        "data": {
+            "addToDoItem": {
+                "id": "5ddd1840230b120010fa1d3e",
+                "description": "ToDo item inside a ToDo list",
+                "completed": false,
+                "__typename": "ToDoItem"
+            }
+        }
+    }
+}

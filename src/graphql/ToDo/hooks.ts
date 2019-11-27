@@ -93,6 +93,24 @@ const useUpdateToDoItemMutation = () => {
     return (idToDo: string, toDoItem: ToDoItemInputUpdate) =>
         updateToDoItem({
             variables: { idToDo, toDoItem },
+            update: (cache, { data }: any) => {
+                const cacheQuery: ToDos = cache.readQuery({ query: ROOT_GET_TODO_LIST_QUERY }) || { toDos: [] };
+                const updatedToDos =
+                    cacheQuery &&
+                    data &&
+                    cacheQuery.toDos.map((item: Maybe<ToDo>) => {
+                        if (item && item.id === idToDo) {
+                            item.toDoList = item.toDoList.map(toDo => {
+                                if (toDo && toDo.id === toDoItem.id) {
+                                    return { ...toDo, ...(toDoItem as ToDoItem) };
+                                }
+                                return toDo;
+                            });
+                        }
+                        return item;
+                    });
+                cache.writeQuery({ query: ROOT_GET_TODO_LIST_QUERY, data: { toDos: updatedToDos } });
+            },
         });
 };
 
