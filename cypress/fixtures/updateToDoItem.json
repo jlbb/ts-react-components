@@ -1,0 +1,13 @@
+{
+    "operation": "UpdateToDoItem",
+    "response": {
+        "data": {
+            "updateToDoItem": {
+                "id": "5ddd1c0a230b120010fa1d40",
+                "description": "Cats",
+                "completed": true,
+                "__typename": "ToDoItem"
+            }
+        }
+    }
+}

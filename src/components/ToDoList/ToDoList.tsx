@@ -22,7 +22,7 @@ const ToDoList = ({
                         <input
                             checked={toDoItem.completed}
                             className={componentClass('checkbox')}
-                            data-testid={`toDoList-updateToDoItem-${toDoItem.id}`}
+                            data-testid={`toDoList-updateToDoItem`}
                             type={'checkbox'}
                             onChange={() => onUpdateToDo({ ...toDoItem, completed: !toDoItem.completed })}
                         />

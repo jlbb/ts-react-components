@@ -256,7 +256,7 @@ describe('ToDoApp invokes to', () => {
 
         await _wait();
 
-        fireEvent.click(getByTestId(`toDoList-updateToDoItem-${toDoItem.id}`));
+        fireEvent.click(getByTestId(`toDoList-updateToDoItem`));
 
         await _wait();
         expect(updateToDoItemMutationCalled).toBe(true);

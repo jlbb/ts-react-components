@@ -15,7 +15,7 @@
                         },
                         {
                             "id": "5d8d3b06d2de4e53694347b8",
-                            "description": "Rats",
+                            "description": "Other ToDo item",
                             "completed": false,
                             "__typename": "ToDoItem"
                         }
@@ -28,13 +28,13 @@
                     "toDoList": [
                         {
                             "id": "5d8c6b1e303d8e3957317038",
-                            "description": "Cat",
+                            "description": "Cats",
                             "completed": false,
                             "__typename": "ToDoItem"
                         },
                         {
                             "id": "5d8d3bb6d2de4e53694347be",
-                            "description": "Dog",
+                            "description": "Dogs",
                             "completed": false,
                             "__typename": "ToDoItem"
                         },

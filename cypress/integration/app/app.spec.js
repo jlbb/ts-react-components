@@ -1,13 +1,14 @@
 beforeEach(() => {
-    // Fetch fixtures.
+    // Fetch fixtures
     cy.fixture('getToDoList').as('getToDoListQuery');
     cy.fixture('addToDo').as('addToDoQuery');
     cy.fixture('addToDoItem').as('addToDoItemQuery');
     cy.fixture('removeToDo').as('removeToDoQuery');
     cy.fixture('removeToDoItem').as('removeToDoItemQuery');
+    cy.fixture('updateToDoItem').as('updateToDoItemQuery');
 });
 
-context('ToDo App - Elements creations', () => {
+context('ToDo App - Add', () => {
     beforeEach(function() {
         cy.mockGraphQL([this.getToDoListQuery, this.addToDoQuery, this.addToDoItemQuery]);
 
@@ -51,14 +52,12 @@ context('ToDo App - Elements creations', () => {
     });
 });
 
-context('ToDo app - Elements removal', () => {
+context('ToDo app - Remove', () => {
     beforeEach(function() {
         cy.mockGraphQL([this.getToDoListQuery, this.removeToDoQuery, this.removeToDoItemQuery]);
 
         cy.visit('/');
     });
-
-    // https://on.cypress.io/interacting-with-elements
 
     it('it should remove a ToDo list', () => {
         const text = 'ToDo List 1';
@@ -93,5 +92,38 @@ context('ToDo app - Elements removal', () => {
                 .find('.toDoList li')
                 .should('not.contain', text);
         });
+    });
+});
+
+context('ToDo app - Update', () => {
+    beforeEach(function() {
+        cy.mockGraphQL([this.getToDoListQuery, this.updateToDoItemQuery]);
+
+        cy.visit('/');
+    });
+
+    it('it should check a ToDo item as complete', () => {
+        const text = 'Cats';
+
+        cy.get('.toDoApp > .toDoApp__toDoContainer').within(cont => {
+            const container = cont.filter((key, value) => {
+                return value.querySelector('.title').innerText.includes('Favourite Animals');
+            });
+
+            cy.wrap(container)
+                .contains('.toDoList li', text)
+                .find('[data-testid="toDoList-updateToDoItem"]')
+                .check()
+                .should('be.checked');
+        });
+    });
+
+    it('it should uncheck a ToDo item', () => {
+        cy.get('.toDoApp > .toDoApp__toDoContainer')
+            .first()
+            .find('[data-testid="toDoList-updateToDoItem"]')
+            .first()
+            .uncheck()
+            .should('not.be.checked');
     });
 });
